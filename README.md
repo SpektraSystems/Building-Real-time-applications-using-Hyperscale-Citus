@@ -70,6 +70,9 @@ In order to use the Azure Portal Cloud Shell we will need to create a storage ac
 
 These steps will instruct you to create a Bash Azure Cloud Shell.
 1. On the portal banner click on the Cloud Shell icon.
+
+![](images/azurecli.png)
+
 2. On the Welcome to Azure Cloud Shell click Bash.
 3.  On the You have no storage mounted screen click Show advanced settings.
 4. Use the default values for subscription and region
