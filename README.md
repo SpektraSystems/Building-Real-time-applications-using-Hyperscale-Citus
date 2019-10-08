@@ -74,7 +74,13 @@ These steps will instruct you to create a Bash Azure Cloud Shell.
 ![](images/azurecli.png)
 
 2. On the Welcome to Azure Cloud Shell click Bash.
+
+![](images/)
+
 3.  On the You have no storage mounted screen click Show advanced settings.
+
+![](images/shadvsetting.png)
+
 4. Use the default values for subscription and region
 5. Resource Group should be set to Use existing rg279967 
  
@@ -84,6 +90,8 @@ These steps will instruct you to create a Bash Azure Cloud Shell.
  
 8. Click Create Storage 
 Note: This may take up to a minute to create and start the Cloud Shell
+
+![](images/storageacc.png)
  
 9. We will need the client IP address of Cloud Shell to configure the firewall in the next step. At the command prompt enter the following command and press return then copy or note the IP address of your cloud shell 
 **curl -s https://ifconfig.co**
@@ -98,6 +106,9 @@ The Hyperscale (Citus) on Azure Database for PostgreSQL service uses a firewall 
  
 1. In the upper left of the Azure Portal click Home 
 2. Under Azure services click Azure Database for PostgreSQL servers 
+
+![](images/postgresql1.png)
+
 3. Click on sg279967 
 4. On the left side navigation of the overview pane under Security click Firewall [In portal we have NETWORKING instead of firewall]
 5. Enter the IP address from your Cloud Shell in the START IP and END IP boxes 
