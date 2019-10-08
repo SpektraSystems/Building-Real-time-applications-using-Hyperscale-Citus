@@ -37,11 +37,11 @@ In this exercise, you will log into the **Azure Portal** using your Azure creden
 
 ![](images/gotojumpvm.png)
 
-2.  Open Azure Portal by launching shortcut from the desktop.
+2. Open Azure Portal by launching shortcut from the desktop.
 
 ![](images/azureportallink.png)
 
-3.  Enter the **Username** which was displayed in the previous window and click on **Next**.<br/>
+3. Enter the **Username** which was displayed in the previous window and click on **Next**.<br/>
 
 ![](images/1signin.png)
 
@@ -49,12 +49,12 @@ In this exercise, you will log into the **Azure Portal** using your Azure creden
 
 ![](images/2signin.png)
 
-5.	In the Welcome to **Microsoft Azure** pop-up window, click **Maybe Later**. Now you have login successfully.
+5. In the Welcome to **Microsoft Azure** pop-up window, click **Maybe Later**. Now you have login successfully.
 
 ![](images/maybelater1.png)
 
 6. You will see one Resource Group on which you have access. 
-6. Click on **rg-XXXXX** Resource Group which contains the pre-deployed Azure SQL Database for PostgreSQL.
+7. Click on **rg-XXXXX** Resource Group which contains the pre-deployed Azure SQL Database for PostgreSQL.
 
 ![](images/overview1.png)
 
@@ -73,7 +73,7 @@ These steps will instruct you to create a Bash Azure Cloud Shell.
 
 ![](Images/)
 
-3.  On the You have no storage mounted screen click Show advanced settings.
+3. On the You have no storage mounted screen click Show advanced settings.
 
 ![](Images/shadvsetting.png)
 
@@ -107,16 +107,16 @@ Follow these instructions to allow you Bash Cloud Shell access to the Hyperscale
 ![](Images/azpostgresql.png)
 
 
-3. Click on your PostgreSQL Database **postgreXXXXX**
+2. Click on your PostgreSQL Database **postgreXXXXX**
 
 ![](Images/azpostgresql1.png)
 
 
-4. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES**.
+3. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES**.
 
 ![](Images/2postgresqlfw.png)
 
-5. Then add **Firewall Rule**, name it **Rule1** and enter IP address you copied previously in the **START IP** and **END IP** boxes.
+4. Then add **Firewall Rule**, name it **Rule1** and enter IP address you copied previously in the **START IP** and **END IP** boxes.
 
 ![](Images/3postgresql.png)
 
@@ -133,7 +133,7 @@ We will connect to the database group using Psql. Psql is built into the Azure C
 1. At the bash prompt, connect to your **Azure Database for PostgreSQL server** with the Psql utility. Initial connections may take up to 2 minutes. Copy and paste the following command and press enter 
 
 ```
-psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require"
+psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='Password@123' sslmode=require"
 ```
 
 ![](Images/citus.png)
