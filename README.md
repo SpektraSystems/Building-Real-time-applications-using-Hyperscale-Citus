@@ -5,15 +5,12 @@
 ## Overview
 Hyperscale (Citus) has the ability to parallelize your queries across multiple workers/resources to give immense performance improvements. One workload that can benefit from this ability of parallelism is powering real-time dashboards of event data.
 For example, you could be a cloud services provider helping other businesses monitor their HTTP traffic. Every time one of your clients receives an HTTP request your service receives a log record. You want to ingest all those records and create an HTTP operational analytics dashboard which gives your clients insights such as the number of HTTP errors their sites served. It’s important that this data shows up with as little latency as possible so your clients can fix problems with their sites. It’s also important for the dashboard to show graphs of historical trends.
+
 Alternatively, maybe you’re building an advertising network and want to show clients click rates on their campaigns. In this example latency is also critical, raw data volume is also high, and both historical and live data are important.
 For this experience we will instruct you on how to deal with a number of real-time and scaling issues using Hyperscale (Citus) on Azure Database for PostgreSQL. 
 
 ## Exercise 1: Getting Started
 This exercise will help you getting access to environment and getting started within it. 
-
-   * [Task 1: Sign Up for Pre-configured Environment](#exercise-01-sign-up-for-pre-configured-environment)
-   * [Task 2: Log into your Azure Portal and Verify access to the Lab Environment](#exercise-02-log-into-your-azure-portal-and-verify-access-to-the-lab)
- 
 
 ### Task 1: Sign Up for pre configured environment
 
@@ -36,7 +33,7 @@ This exercise will help you getting access to environment and getting started wi
 
 In this exercise, you will log into the **Azure Portal** using your Azure credentials. We'll be using the Jump Virtual machine provided for completing this demo. 
 
-1. Login to **JumpVM** by clicking on **GO TO JumpVM** button on lab details page. 
+1. Login to **LabVM** by clicking on **GO TO LabVM** button on lab details page. 
 
 ![](images/gotojumpvm.png)
 
@@ -57,8 +54,7 @@ In this exercise, you will log into the **Azure Portal** using your Azure creden
 ![](images/maybelater1.png)
 
 6. You will see one Resource Group on which you have access. 
-6. Click on **SQL-XXXXX** Resource Group which contains the pre-deployed Azure SQL Database as shown below. Your demo environment includes a pre-created Azure SQL Database named "Clinic", loaded with sample data. It also includes a sample application to use through the demo hosted in an Azure App Service. 
-
+6. Click on **rg-XXXXX** Resource Group which contains the pre-deployed Azure SQL Database for PostgreSQL.
 
 ![](images/overview1.png)
 
@@ -69,11 +65,11 @@ In this exercise, you will log into the **Azure Portal** using your Azure creden
 In order to use the Azure Portal Cloud Shell we will need to create a storage account. The storage account allows you to save files associated with the Cloud Shell so you may use them in various Azure portal activities like running scripts to manage Azure resources.
 
 These steps will instruct you to create a Bash Azure Cloud Shell.
-1. On the portal banner click on the Cloud Shell icon.
+1. On the portal banner click on the **Cloud Shell icon**.
 
 ![](Images/azurecli.png)
 
-2. On the Welcome to Azure Cloud Shell click Bash.
+2. On the Welcome to Azure Cloud Shell click **Bash**.
 
 ![](Images/)
 
@@ -81,20 +77,21 @@ These steps will instruct you to create a Bash Azure Cloud Shell.
 
 ![](Images/shadvsetting.png)
 
-4. Use the default values for subscription and region
-5. Resource Group should be set to Use existing rg279967 
- 
-6. For Storage account, select Create new and paste **sg279967shell** in the field
- 
-7. For File share, select Create new and enter sg279967shell
- 
-8. Click Create Storage 
-Note: This may take up to a minute to create and start the Cloud Shell
+4. Use following configurations:
+* Resource Group: existing resource group i.e., **rg-XXXXX**.
+* Storage Account: 
+* File Share: 
+
+5. Then select **Create Storage**.
 
 ![](Images/storageacc.png)
- 
-9. We will need the client IP address of Cloud Shell to configure the firewall in the next step. At the command prompt enter the following command and press return then copy or note the IP address of your cloud shell 
-**curl -s https://ifconfig.co**
+
+6. We will need the client IP address of Cloud Shell to configure the firewall in the next step. At the command prompt enter the following command and press return then copy or note the IP address of your cloud shell 
+
+```
+curl -s https://ifconfig.co**
+```
+
 Note: To paste in the bash console right click and choose paste.
 
 ![](Images/activediradmin.png)
@@ -102,23 +99,24 @@ Note: To paste in the bash console right click and choose paste.
 
 ### Task 2: Configure a server-level firewall rule
 The Hyperscale (Citus) on Azure Database for PostgreSQL service uses a firewall at the server-level. By default, the firewall prevents all external applications and tools from connecting to the coordinator node and any databases inside. We must add a rule to open the firewall for a specific IP address range.
-1. Follow these instructions to allow you Bash Cloud Shell access to the Hyperscale (Citus) server group.
+
+Follow these instructions to allow you Bash Cloud Shell access to the Hyperscale (Citus) server group.
  
 1. In the upper left of the Azure Portal click **Home**, under **Azure services** click **Azure Database for PostgreSQL servers**. 
 
 ![](Images/azpostgresql.png)
 
-3. Click on sg279967 
+
+3. Click on your PostgreSQL Database **postgreXXXXX**
 
 ![](Images/azpostgresql1.png)
 
-4. On the left side navigation of the overview pane under **Security** click **Networking**.
+
+4. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES**.
 
 ![](Images/2postgresqlfw.png)
 
-5. Enter the IP address from your Cloud Shell in the START IP and END IP boxes 
-6. Enter the following into the FIREWALL RULE NAME CloudShell
-7. Click Save at the top left of the pane 
+5. Then add **Firewall Rule**, name it **Rule1** and enter IP address you copied previously in the **START IP** and **END IP** boxes.
 
 ![](Images/3postgresql.png)
 
@@ -126,15 +124,17 @@ Note: Hyperscale (Citus) communicates over port 5432. If you are trying to conne
 
 ## Exercise 3: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL
 
-When you create your Azure Database for PostgreSQL server, a default database named citus is created. To connect to your database server, you need a connection string and the admin password. Initial connections to Postgres may take up to 2 minutes. If for any reason your shell times out and you restart it you will need to perform the curl -s https://ifconfig.co/ command again and ensure the firewall is updated with the new IP address.
+When you create your Azure Database for PostgreSQL server, a default database named citus is created. To connect to your database server, you need a connection string and the admin password. Initial connections to Postgres may take up to 2 minutes. If for any reason your shell times out and you restart it you will need to perform the ```curl -s https://ifconfig.co/``` command again and ensure the firewall is updated with the new IP address.
 
 ### Task 1: Connect to the database using Psql
 
 We will connect to the database group using Psql. Psql is built into the Azure Cloud Shell.
 
-1. Click the Maximize "square" in the upper right of the Cloud Shell click to make it full screen 
-2. At the bash prompt, connect to your Azure Database for PostgreSQL server with the Psql utility. Initial connections may take up to 2 minutes. Copy and paste the following command and press enter 
-**psql "host=sg279967-c.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require"**
+1. At the bash prompt, connect to your **Azure Database for PostgreSQL server** with the Psql utility. Initial connections may take up to 2 minutes. Copy and paste the following command and press enter 
+
+```
+psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require"
+```
 
 ![](Images/citus.png)
 
@@ -145,7 +145,7 @@ The data we’re dealing with is an immutable stream of log data that we will be
 On this page we will create a simple schema for ingesting HTTP event data, shard it, create load and then query.
 Let's create the tables for http requests, per-minute aggregates and a table that maintains the position of our last rollup.
 
-1. In the Psql console copy and paste the following to create the tables
+1. In the Psql console copy and paste the following to create the tables.
 
 ```
 -- this is run on the coordinator
@@ -177,7 +177,7 @@ CHECK (minute = date_trunc('minute', minute))
 
 ![](Images/citusquery1.png)
 
-2. In the Psql console copy and paste the following to see what you just created 
+2. In the Psql console copy and paste the following to see what you just created.
 
 ```
 \dt
@@ -185,26 +185,32 @@ CHECK (minute = date_trunc('minute', minute))
 
 ![](Images/displaytable.png)
 
-Shard tables across nodes
+**Shard tables across nodes**
+
 A hyperscale deployment stores table rows on different nodes based on the value of a user-designated column. This "distribution column" marks how data is sharded across nodes. Let's set the distribution column to be site_id, the shard key.
-3. In the Psql console copy and paste the following to see what you just created 
-SELECT create_distributed_table('http_request', 'site_id'); SELECT create_distributed_table('http_request_1min', 'site_id'); 
- 
+
+3. In the Psql console copy and paste the following to see what you just created. 
+
+```
+SELECT create_distributed_table('http_request', 'site_id'); 
+SELECT create_distributed_table('http_request_1min', 'site_id'); 
+```
+
 The above commands create shards for both the tables across worker nodes. Shards are nothing but PostgreSQL tables that hold a set of sites. All the data for a particular site for a table will live in the same shard.
 Notice that both tables are sharded on site_id. Hence there’s a 1-to-1 correspondence between http_request shards and http_request_1min shards i.e shards of both tables holding same set of sites are on same worker nodes. This is called colocation. Colocation makes queries, such as joins, faster and our rollups possible. In the following image you will see an example of colocation where for both tables site_id 1 and 3 are on worker 1 while site_id 2 and 4 are on Worker 2.
 
 Note: The create_distributed_table UDF (User Defined Functions) uses the default configuration values for shard count. The default is 32. For real-time analytics use cases similar to monitoring HTTP traffic, we recommend using 2-4x as many shards as CPU cores in your cluster. This lets you rebalance data across your cluster after adding new worker nodes. Shard count can be configured by using the citus.shard_count setting. This should be configured before run the create_distributed_table commands.
 
-Generate data
+**Generate data**
 The system is ready to accept data and serve queries now! The next set of instructions will keep the following loop running in a Psql console in the background while you continue with the other commands in this article. It generates fake data every second or two.
  
-4. In the Cloud Shell Psql console copy and paste the following to exit to the bash console 
+4. In the Cloud Shell Psql console copy and paste the following to exit to the bash console. 
 
 ```
 \q 
 ```
 
-5. On the Cloud Shell banner click the editor icon 
+5. On the Cloud Shell banner click the **editor icon**.
 
 ![](Images/editoricon.png)
 
@@ -238,26 +244,32 @@ END $$;
 
 ![](Images/editor1.png)
 
-7. On the top right of the Cloud Shell editor click the ellipse and choose Close Editor 
+7. On the top right of the Cloud Shell editor click the **ellipse** and choose **Close Editor**.
 8. Click Save on the "Do you want to save" dialog 
 
 ![](Images/savequery.png)
 
-9. Enter the following for the file name and click Save 
-load.sql
+9. Enter the name **load.sql** for the file name and click **Save**.
 
 ![](Images/savequery1.png)
 
-10. In the Cloud Shell bash console copy and paste the following then press enter to run load.sql in the background 
-psql "host=sg279967-c.postgres.database.azure.com port=5432 dbname=citus user=citus password='Password@123' sslmode=require" -f load.sql &
+10. In the Cloud Shell bash console copy and paste the following then press enter to run **load.sql** in the background. 
+
+```
+psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='Password@123' sslmode=require" -f load.sql &
+```
 
 ![](Images/query.png)
 
-Dashboard query
+**Dashboard query**
 The Hyperscale (Citus) hosting option allows multiple nodes to process queries in parallel for speed. For instance, the database calculates aggregates like SUM and COUNT on worker nodes, and combines the results into a final answer.
+
 11. In the Cloud Shell bash console copy and paste the following then press enter to launch Psql again 
-psql "host=sg279967-c.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require"
- 
+
+```
+psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require"
+```
+
 12. In the Cloud Shell Psql console enter the following command to verify the real-time load is being generated 
 ```
 Select Count(*) from http_request; 
@@ -297,8 +309,9 @@ The setup described above works, but has drawbacks.
 •	Your HTTP operational analytics dashboard must go over each row every time it needs to generate a graph. For example, if your clients are interested in trends over the past year, your queries will aggregate every row for the past year from scratch.
 •	Your storage costs will grow proportionally with the ingest rate and the length of the queryable history. In practice, you may want to keep raw events for a shorter period of time (one month) and look at historical graphs over a longer time period (years).
 
-Rollups
+**Rollups**
 As your data scales we want to keep performance up. We will ensure our dashboard stays fast by regularly rolling up the raw data into an aggregate table. You can experiment with the aggregation duration. In this example we will use a per-minute aggregation table, but you could break data into 5, 15, or 60 minutes instead.
+
 To run this roll-up more easily, we're going to put it into a plpgsql function.
 In order to populate http_request_1min we’re going to periodically run an INSERT INTO SELECT. This is possible because the tables are co-located. The following function wraps the rollup query up for convenience.
 
@@ -382,14 +395,17 @@ Those are the basics! We provided an architecture that ingests HTTP events and t
 The next sections extend upon the basic architecture and show you how to resolve questions which often appear.
 
 ## Exercise 4: Approximate Distinct Counts
+
 A common question in HTTP operational analytics deals with approximate distinct counts: How many unique visitors visited your site over the last month? Answering this question exactly requires storing the list of all previously-seen visitors in the rollup tables, a prohibitively large amount of data. However an approximate answer is much more manageable.
+
 A datatype called hyperloglog, or HLL, can answer the query approximately; it takes a surprisingly small amount of space to tell you approximately how many unique elements are in a set. Its accuracy can be adjusted. We’ll use ones which, using only 1280 bytes, will be able to count up to tens of billions of unique visitors with at most 2.2% error.
 An equivalent problem appears if you want to run a global query, such as the number of unique IP addresses which visited any of your client’s sites over the last month. Without HLLs this query involves shipping lists of IP addresses from the workers to the coordinator for it to deduplicate. That’s both a lot of network traffic and a lot of computation. By using HLLs you can greatly improve query speed.
+
 For non-Hyperscale (Citus) installs you much first you must install the HLL extension and enable it. You would run the Psql command CREATE EXTENSION hll; on all nodes in this case. This is not necessary on Azure as Hyperscale (Citus) already comes with HLL installed, along with other useful Extensions.
 Now we’re ready to track IP addresses in our rollup with HLL. First add a column to the rollup table.
 
 ###Task 1:
- 1. In the Psql console copy and paste the following to 
+ 1. In the Psql console copy and paste the following to bash
 
 ```
 ALTER TABLE http_request_1min ADD COLUMN distinct_ip_addresses hll; 
@@ -474,7 +490,9 @@ LIMIT 15;
 
 ## Task 2: Unstructured Data with JSONB
 
-Hyperscale (Citus) works well with Postgres’ built-in support for unstructured data types. To demonstrate this, let’s keep track of the number of visitors which came from each country. Using a semi-structure data type saves you from needing to add a column for every individual country and ending up with rows that have hundreds of sparsely filled columns. PostgreSQL has JSONB and JSON data types for storing JSON data. The recommended data type is JSONB because a) indexing capabilities (GIN and GIST) of JSONB compared to JSON and b) JSONB provides compression because of binary format. Here we’ll demonstrate how to incorporate JSONB columns into your data model.
+Hyperscale (Citus) works well with Postgres’ built-in support for unstructured data types. To demonstrate this, let’s keep track of the number of visitors which came from each country. Using a semi-structure data type saves you from needing to add a column for every individual country and ending up with rows that have hundreds of sparsely filled columns. 
+
+PostgreSQL has JSONB and JSON data types for storing JSON data. The recommended data type is JSONB because a) indexing capabilities (GIN and GIST) of JSONB compared to JSON and b) JSONB provides compression because of binary format. Here we’ll demonstrate how to incorporate JSONB columns into your data model.
  
 1. In the Psql console copy and paste the following to add a new JSONB column to our rollup table 
 
