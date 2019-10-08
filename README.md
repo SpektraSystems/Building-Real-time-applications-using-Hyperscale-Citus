@@ -1,6 +1,5 @@
 # Building-Real-time-applications-using-Hyperscale-Citus-
 
-# Azure-SQL-Database-Security-Demo
 
 ## Overview
 Hyperscale (Citus) has the ability to parallelize your queries across multiple workers/resources to give immense performance improvements. One workload that can benefit from this ability of parallelism is powering real-time dashboards of event data.
