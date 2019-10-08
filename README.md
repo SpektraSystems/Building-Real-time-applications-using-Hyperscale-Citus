@@ -104,36 +104,50 @@ Note: To paste in the bash console right click and choose paste.
 The Hyperscale (Citus) on Azure Database for PostgreSQL service uses a firewall at the server-level. By default, the firewall prevents all external applications and tools from connecting to the coordinator node and any databases inside. We must add a rule to open the firewall for a specific IP address range.
 1. Follow these instructions to allow you Bash Cloud Shell access to the Hyperscale (Citus) server group.
  
-1. In the upper left of the Azure Portal click Home 
-2. Under Azure services click Azure Database for PostgreSQL servers 
+1. In the upper left of the Azure Portal click **Home**, under **Azure services** click **Azure Database for PostgreSQL servers**. 
 
-![](Images/postgresql1.png)
+![](Images/azpostgresql.png)
 
 3. Click on sg279967 
-4. On the left side navigation of the overview pane under Security click Firewall [In portal we have NETWORKING instead of firewall]
+
+![](Images/azpostgresql1.png)
+
+4. On the left side navigation of the overview pane under **Security** click **Networking**.
+
+![](Images/2postgresqlfw.png)
+
 5. Enter the IP address from your Cloud Shell in the START IP and END IP boxes 
 6. Enter the following into the FIREWALL RULE NAME CloudShell
 7. Click Save at the top left of the pane 
+
+![](Images/3postgresql.png)
+
 Note: Hyperscale (Citus) communicates over port 5432. If you are trying to connect from within a corporate network, outbound traffic over port 5432 may not be allowed by your network's firewall. If so, you cannot connect to your Azure SQL Database server unless your IT department opens port 5432.
 
-![](images/servername.png)
-
 ## Exercise 3: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL
+
 When you create your Azure Database for PostgreSQL server, a default database named citus is created. To connect to your database server, you need a connection string and the admin password. Initial connections to Postgres may take up to 2 minutes. If for any reason your shell times out and you restart it you will need to perform the curl -s https://ifconfig.co/ command again and ensure the firewall is updated with the new IP address.
+
 ### Task 1: Connect to the database using Psql
+
 We will connect to the database group using Psql. Psql is built into the Azure Cloud Shell.
+
 1. Click the Maximize "square" in the upper right of the Cloud Shell click to make it full screen 
 2. At the bash prompt, connect to your Azure Database for PostgreSQL server with the Psql utility. Initial connections may take up to 2 minutes. Copy and paste the following command and press enter 
 **psql "host=sg279967-c.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require"**
 
-![](images/transdataenc.png)
+![](Images/citus.png)
 
 
 ### Task 2: Create Application Tables
+
 The data we’re dealing with is an immutable stream of log data that we will be inserting directly into Hyperscale (Citus). It’s also common for log data to first be routed through something like Kafka. Kafka has many benefits like allowing you to pre-aggregate the data so high volumes of data are manageable.
 On this page we will create a simple schema for ingesting HTTP event data, shard it, create load and then query.
 Let's create the tables for http requests, per-minute aggregates and a table that maintains the position of our last rollup.
+
 1. In the Psql console copy and paste the following to create the tables
+
+```
 -- this is run on the coordinator
 CREATE TABLE http_request (
 site_id INT,
@@ -159,9 +173,18 @@ CREATE TABLE latest_rollup (
 minute timestamptz PRIMARY KEY,
 CHECK (minute = date_trunc('minute', minute))
 );
+```
+
+![](Images/citusquery1.png)
 
 2. In the Psql console copy and paste the following to see what you just created 
+
+```
 \dt
+```
+
+![](Images/displaytable.png)
+
 Shard tables across nodes
 A hyperscale deployment stores table rows on different nodes based on the value of a user-designated column. This "distribution column" marks how data is sharded across nodes. Let's set the distribution column to be site_id, the shard key.
 3. In the Psql console copy and paste the following to see what you just created 
@@ -176,10 +199,18 @@ Generate data
 The system is ready to accept data and serve queries now! The next set of instructions will keep the following loop running in a Psql console in the background while you continue with the other commands in this article. It generates fake data every second or two.
  
 4. In the Cloud Shell Psql console copy and paste the following to exit to the bash console 
+
+```
 \q 
- 
+```
+
 5. On the Cloud Shell banner click the editor icon 
+
+![](Images/editoricon.png)
+
 6. In the Cloud Shell editor copy and paste (use Contorl+V key to paste in the editor) the following to create the http_request load generator
+
+```
 -- loop continuously writing records every 1/4 second
 DO $$
 BEGIN LOOP
@@ -203,27 +234,48 @@ BEGIN LOOP
     PERFORM pg_sleep(random() * 0.25);
 END LOOP;
 END $$;
+```
+
+![](Images/editor1.png)
 
 7. On the top right of the Cloud Shell editor click the ellipse and choose Close Editor 
 8. Click Save on the "Do you want to save" dialog 
+
+![](Images/savequery.png)
+
 9. Enter the following for the file name and click Save 
 load.sql
 
+![](Images/savequery1.png)
+
 10. In the Cloud Shell bash console copy and paste the following then press enter to run load.sql in the background 
-psql "host=sg279967-c.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require" -f load.sql &
+psql "host=sg279967-c.postgres.database.azure.com port=5432 dbname=citus user=citus password='Password@123' sslmode=require" -f load.sql &
+
+![](Images/query.png)
+
 Dashboard query
 The Hyperscale (Citus) hosting option allows multiple nodes to process queries in parallel for speed. For instance, the database calculates aggregates like SUM and COUNT on worker nodes, and combines the results into a final answer.
 11. In the Cloud Shell bash console copy and paste the following then press enter to launch Psql again 
 psql "host=sg279967-c.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require"
  
 12. In the Cloud Shell Psql console enter the following command to verify the real-time load is being generated 
+```
 Select Count(*) from http_request; 
- 
+```
+
+![](Images/countinc.png)
+
 13. In the Cloud Shell Psql console enter the select command once more to see that the count is increasing 
+```
 Select Count(*) from http_request; 
+```
+![](Images/countinc.png)
+
 We will run this query to count web requests per minute along with a few statistics.
  
 14. In the Psql console copy and paste the following to see average response time for sites
+
+```
 SELECT
 site_id,
 date_trunc('minute', ingest_time) as minute,
@@ -236,6 +288,10 @@ WHERE date_trunc('minute', ingest_time) > now() - '5 minutes'::interval
 GROUP BY site_id, minute
 ORDER BY minute ASC
 LIMIT 15;
+```
+
+![](Images/query2.png)
+
 Note: If you are stuck in the results view, type q and press Enter to quit view mode
 The setup described above works, but has drawbacks.
 •	Your HTTP operational analytics dashboard must go over each row every time it needs to generate a graph. For example, if your clients are interested in trends over the past year, your queries will aggregate every row for the past year from scratch.
@@ -245,7 +301,10 @@ Rollups
 As your data scales we want to keep performance up. We will ensure our dashboard stays fast by regularly rolling up the raw data into an aggregate table. You can experiment with the aggregation duration. In this example we will use a per-minute aggregation table, but you could break data into 5, 15, or 60 minutes instead.
 To run this roll-up more easily, we're going to put it into a plpgsql function.
 In order to populate http_request_1min we’re going to periodically run an INSERT INTO SELECT. This is possible because the tables are co-located. The following function wraps the rollup query up for convenience.
+
 1. In the Psql console copy and paste the following to create the rollup_http_request function
+
+```
 -- initialize to a time long ago
 INSERT INTO latest_rollup VALUES ('10-10-1901');
 
@@ -276,26 +335,48 @@ GROUP BY 1, 2;
 UPDATE latest_rollup SET minute = curr_rollup_time;
 END;
 $$ LANGUAGE plpgsql;
+```
+
+![](Images/rollup.png)
+
 
 2. In the Psql console copy and paste the following to execute the rollup function 
+```
 SELECT rollup_http_request(); 
+```
+
+![](Images/rollup1.png)
+
 Note: The above function should be called every minute. You could do this by using a PostgreSQL extension called pg_cron which allows you to schedule recurring queries directly from the database. For example the above rollup function can be called once every minute by the below command.
+
+```
 SELECT cron.schedule('* * * * *','SELECT rollup_http_request();'); 
+```
+
+![](Images/rollup2.png)
+
 The dashboard query from earlier is now a lot nicer. We can query the 1minute aggregated rollup table to get the same report as earlier.
  
 3. In the Psql console copy and paste the following to run the query on the 1 minute aggregated table
+```
 SELECT site_id, ingest_time as minute, request_count,
     success_count, error_count, average_response_time_msec
 FROM http_request_1min
 WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
+```
 
-Expiring Old Data
+![](Images/rollup3.png)
+
+*Expiring Old Data
 The rollups make queries faster, but we still need to expire old data to avoid unbounded storage costs. Simply decide how long you’d like to keep data for each granularity, and use standard queries to delete expired data. In the following example, we decided to keep raw data for one day, and per-minute aggregations for one month. You don't need to run these commands right now as we don't have any old data to expire.
+
+```
 DELETE FROM http_request WHERE ingest_time < now() - interval '1 day';
 DELETE FROM http_request_1min WHERE ingest_time < now() - interval '1 month';
+```
 
-In production you could wrap these queries in a function and call it every minute in a cron job.
+*In production you could wrap these queries in a function and call it every minute in a cron job.
 Data expiration can go even faster by using latest time partitioning feature in PostgreSQL in addition to sharding with Hyperscale (Citus). You could also use extensions like pg_partman to automate time partition creation and maintenance.
 Those are the basics! We provided an architecture that ingests HTTP events and then rolls up these events into their pre-aggregated form. This way, you can both store raw events and also power your analytical dashboards with subsecond queries.
 The next sections extend upon the basic architecture and show you how to resolve questions which often appear.
@@ -309,10 +390,18 @@ Now we’re ready to track IP addresses in our rollup with HLL. First add a colu
 
 ###Task 1:
  1. In the Psql console copy and paste the following to 
+
+```
 ALTER TABLE http_request_1min ADD COLUMN distinct_ip_addresses hll; 
+```
+
+![](Images/rollup4.png)
+
 Next we will use our custom aggregation to populate the column.
  
 2. In the Psql console copy and paste the following to add it to the query of our rollup function 
+
+```
 -- function to do the rollup
 CREATE OR REPLACE FUNCTION rollup_http_request() RETURNS void AS $$
 DECLARE
@@ -342,34 +431,60 @@ GROUP BY 1, 2;
 UPDATE latest_rollup SET minute = curr_rollup_time;
 END;
 $$ LANGUAGE plpgsql;
+```
+
+![](Images/rollup5.png)
 
 3.	In the Psql console copy and paste the following to execute the updated function 
+
+```
 SELECT rollup_http_request(); 
+```
+
+![](Images/rollup6.png)
+
 Dashboard queries are a little more complicated, you have to read out the distinct number of IP addresses by calling the hll_cardinality function.
  
 4. In the Psql console copy and paste the following to create a report using the hll_cardinality function 
+
+```
 SELECT site_id, ingest_time as minute, request_count, 
     success_count, error_count, average_response_time_msec, 
     hll_cardinality(distinct_ip_addresses)::bigint AS distinct_ip_address_count 
 FROM http_request_1min 
 WHERE ingest_time > date_trunc('minute', now()) - interval '5 minutes' 
 LIMIT 15;
+```
+
+![](Images/rollup7.png)
+
 HLLs aren’t just faster, they let you do things you couldn’t previously. Say we did our rollups, but instead of using HLLs we saved the exact unique counts. This works fine, but you can’t answer queries such as “how many distinct sessions were there during this one-week period in the past we’ve thrown away the raw data for?”.
 With HLLs, this is easy. You can compute distinct IP counts over a time period with the following query
  
 5. In the Psql console copy and paste the following to compute distinct IP counts over time
+
+```
 SELECT hll_cardinality(hll_union_agg(distinct_ip_addresses))::bigint
 FROM http_request_1min
 WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
+```
+
+![](Images/rollup8.png)
 
 ## Task 2: Unstructured Data with JSONB
+
 Hyperscale (Citus) works well with Postgres’ built-in support for unstructured data types. To demonstrate this, let’s keep track of the number of visitors which came from each country. Using a semi-structure data type saves you from needing to add a column for every individual country and ending up with rows that have hundreds of sparsely filled columns. PostgreSQL has JSONB and JSON data types for storing JSON data. The recommended data type is JSONB because a) indexing capabilities (GIN and GIST) of JSONB compared to JSON and b) JSONB provides compression because of binary format. Here we’ll demonstrate how to incorporate JSONB columns into your data model.
  
 1. In the Psql console copy and paste the following to add a new JSONB column to our rollup table 
+
+```
 ALTER TABLE http_request_1min ADD COLUMN country_counters JSONB; 
- 
+```
+
 2. In the Psql console copy and paste the following to update the rollup_http_request function with country_counters 
+
+```
 -- function to do the rollup
 CREATE OR REPLACE FUNCTION rollup_http_request() RETURNS void AS $$
 DECLARE
@@ -407,16 +522,29 @@ GROUP BY 1, 2;
 UPDATE latest_rollup SET minute = curr_rollup_time;
 END;
 $$ LANGUAGE plpgsql;
+```
+
+![](Images/rollup9.png)
 
 3. In the Psql console copy and paste the following to execute the updated function 
+
+```
 SELECT rollup_http_request(); 
+```
+
+![](Images/rollup10.png)
+
 Now, if you want to get the number of requests which came from America in your dashboard, your can modify the dashboard query to look like this.
  
 4. In the Psql console copy and paste the following to see the requests from America 
+
+```
 SELECT
 request_count, success_count, error_count, average_response_time_msec,
 COALESCE(country_counters->>'USA', '0')::int AS american_visitors
 FROM http_request_1min
 WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
+```
 
+![](Images/rollup11.png)
