@@ -172,7 +172,7 @@ CHECK (minute = date_trunc('minute', minute))
 );
 ```
 
-![](Images/query1run.png)
+![](images/query1run.png)
 
 2. In the Psql console copy and paste the following to see what you just created.
 
@@ -180,8 +180,8 @@ CHECK (minute = date_trunc('minute', minute))
 \dt
 ```
 
-![](Images/query1msg.png)
-![](Images/query1displaytable.png)
+![](images/query1msg.png)
+![](images/query1displaytable.png)
 
 
 **Shard tables across nodes**
@@ -195,7 +195,7 @@ SELECT create_distributed_table('http_request', 'site_id');
 SELECT create_distributed_table('http_request_1min', 'site_id'); 
 ```
 
-![](Images/query2.png)
+![](images/query2.png)
 
 The above commands create shards for both the tables across worker nodes. Shards are nothing but PostgreSQL tables that hold a set of sites. All the data for a particular site for a table will live in the same shard.
 Notice that both tables are sharded on site_id. Hence there’s a 1-to-1 correspondence between http_request shards and http_request_1min shards i.e shards of both tables holding same set of sites are on same worker nodes. This is called colocation. Colocation makes queries, such as joins, faster and our rollups possible. In the following image you will see an example of colocation where for both tables site_id 1 and 3 are on worker 1 while site_id 2 and 4 are on Worker 2.
@@ -276,14 +276,14 @@ psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citu
 Select Count(*) from http_request; 
 ```
 
-![](Images/query3countcheck.png)
+![](images/query3countcheck.png)
 
 13. In the Cloud Shell Psql console enter the select command once more to see that the count is increasing 
 ```
 Select Count(*) from http_request; 
 ```
 
-![](Images/query3countcheck1.png)
+![](images/query3countcheck1.png)
 
 We will run this query to count web requests per minute along with a few statistics.
  
@@ -304,7 +304,7 @@ ORDER BY minute ASC
 LIMIT 15;
 ```
 
-![](Images/query4.png)
+![](images/query4.png)
 
 Note: If you are stuck in the results view, type q and press Enter to quit view mode
 The setup described above works, but has drawbacks.
@@ -352,7 +352,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-![](Images/query5rollup.png)
+![](images/query5rollup.png)
 
 
 2. In the Psql console copy and paste the following to execute the rollup function 
@@ -360,7 +360,7 @@ $$ LANGUAGE plpgsql;
 SELECT rollup_http_request(); 
 ```
 
-![](Images/query5rollup1.png)
+![](images/query5rollup1.png)
 
 Note: The above function should be called every minute. You could do this by using a PostgreSQL extension called pg_cron which allows you to schedule recurring queries directly from the database. For example the above rollup function can be called once every minute by the below command.
 
@@ -368,7 +368,7 @@ Note: The above function should be called every minute. You could do this by usi
 SELECT cron.schedule('* * * * *','SELECT rollup_http_request();'); 
 ```
 
-![](Images/query5rollup2.png)
+![](images/query5rollup2.png)
 
 The dashboard query from earlier is now a lot nicer. We can query the 1minute aggregated rollup table to get the same report as earlier.
  
@@ -381,7 +381,7 @@ WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
 ```
 
-![](Images/query6rollup.png)
+![](images/query6rollup.png)
 
 *Expiring Old Data
 The rollups make queries faster, but we still need to expire old data to avoid unbounded storage costs. Simply decide how long you’d like to keep data for each granularity, and use standard queries to delete expired data. In the following example, we decided to keep raw data for one day, and per-minute aggregations for one month. You don't need to run these commands right now as we don't have any old data to expire.
@@ -413,7 +413,7 @@ Now we’re ready to track IP addresses in our rollup with HLL. First add a colu
 ALTER TABLE http_request_1min ADD COLUMN distinct_ip_addresses hll; 
 ```
 
-![](Images/query7rollup.png)
+![](images/query7rollup.png)
 
 Next we will use our custom aggregation to populate the column.
  
@@ -451,7 +451,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-![](Images/query8rollup.png)
+![](images/query8rollup.png)
 
 3.	In the Psql console copy and paste the following to execute the updated function 
 
@@ -459,7 +459,7 @@ $$ LANGUAGE plpgsql;
 SELECT rollup_http_request(); 
 ```
 
-![](Images/query8rollup1.png)
+![](images/query8rollup1.png)
 
 Dashboard queries are a little more complicated, you have to read out the distinct number of IP addresses by calling the hll_cardinality function.
  
@@ -474,7 +474,7 @@ WHERE ingest_time > date_trunc('minute', now()) - interval '5 minutes'
 LIMIT 15;
 ```
 
-![](Images/query8rollup2.png)
+![](images/query8rollup2.png)
 
 HLLs aren’t just faster, they let you do things you couldn’t previously. Say we did our rollups, but instead of using HLLs we saved the exact unique counts. This works fine, but you can’t answer queries such as “how many distinct sessions were there during this one-week period in the past we’ve thrown away the raw data for?”.
 With HLLs, this is easy. You can compute distinct IP counts over a time period with the following query
@@ -488,7 +488,7 @@ WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
 ```
 
-![](Images/query8rollup3.png)
+![](images/query8rollup3.png)
 
 ## Task 2: Unstructured Data with JSONB
 
@@ -544,7 +544,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-![](Images/query9rollup.png)
+![](images/query9rollup.png)
 
 3. In the Psql console copy and paste the following to execute the updated function 
 
@@ -552,7 +552,7 @@ $$ LANGUAGE plpgsql;
 SELECT rollup_http_request(); 
 ```
 
-![](Images/rollup10.png)
+![](images/rollup10.png)
 
 Now, if you want to get the number of requests which came from America in your dashboard, your can modify the dashboard query to look like this.
  
@@ -567,4 +567,4 @@ WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
 ```
 
-![](Images/query9rollup1.png	)
+![](images/query9rollup1.png	)
