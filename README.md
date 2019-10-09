@@ -123,17 +123,31 @@ Note: Hyperscale (Citus) communicates over port 5432. If you are trying to conne
 
 When you create your Azure Database for PostgreSQL server, a default database named citus is created. To connect to your database server, you need a connection string and the admin password. Initial connections to Postgres may take up to 2 minutes. If for any reason your shell times out and you restart it you will need to perform the ```curl -s https://ifconfig.co/``` command again and ensure the firewall is updated with the new IP address.
 
-### Task 1: Connect to the database using Psql
+### Task 1: Connect to the database using Psql in Azure Data Studio
 
-We will connect to the database group using Psql. Psql is built into the Azure Cloud Shell.
+We will connect to the database group using-----------------
 
-1. At the bash prompt, connect to your **Azure Database for PostgreSQL server** with the Psql utility. Initial connections may take up to 2 minutes. Copy and paste the following command and press enter 
+1. Open **Azure Data Studio**, select **New Connection** button to establish connection with the postgreSQL database.
 
-```
-psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='Password@123' sslmode=require"
-```
+![](Images/azdatastudio.png)
 
-![](Images/citus.png)
+2.  Use following configurations for **Connection Details**:
+* Connection type: select **PostgreSQL** from the dropdown
+* Server Name: **srvxxxxx.postgres.database.azure.com** (go to Azure Database for PostgreSQL server v2 - PREVIEW **srvxxxx**, on the                  top right corner locate the server name)
+* Username: **citus**
+* Passwword: **Password@123**
+* Database Name: **citus**
+* Server Group: For server group name, select **Add server group** from the dropdown and enter your server group name i.e., **postgrexxxxx** as shown below:
+
+![](Images/newconnection2.png)
+
+3. **Connection detials** should look similar to the below, then select **Connect**:
+
+![](Images/newconnection1.png)
+
+4. After getting connected, you can find your **PostgreSQL Database** under **Server** pane as shown below:
+
+![](Images/newconnection3.png)
 
 
 ### Task 2: Create Application Tables
@@ -142,7 +156,11 @@ The data we’re dealing with is an immutable stream of log data that we will be
 On this page we will create a simple schema for ingesting HTTP event data, shard it, create load and then query.
 Let's create the tables for http requests, per-minute aggregates and a table that maintains the position of our last rollup.
 
-1. In the Psql console copy and paste the following to create the tables.
+1. Expand the server group **postgresxxxxx**, then your server and under server expand **Database**. Right click on the database **citus** and select **New Query**.
+
+![](Images/1query.png)
+
+2.In the Psql console copy and paste the following to create the tables.
 
 ```
 -- this is run on the coordinator
@@ -174,7 +192,7 @@ CHECK (minute = date_trunc('minute', minute))
 
 ![](images/query1run.png)
 
-2. In the Psql console copy and paste the following to see what you just created.
+3. In the Psql console copy and paste the following to see what you just created.
 
 ```
 \dt
@@ -188,7 +206,7 @@ CHECK (minute = date_trunc('minute', minute))
 
 A hyperscale deployment stores table rows on different nodes based on the value of a user-designated column. This "distribution column" marks how data is sharded across nodes. Let's set the distribution column to be site_id, the shard key.
 
-3. In the Psql console copy and paste the following to see what you just created. 
+4. In the Psql console copy and paste the following to see what you just created. 
 
 ```
 SELECT create_distributed_table('http_request', 'site_id'); 
@@ -205,17 +223,17 @@ Note: The create_distributed_table UDF (User Defined Functions) uses the default
 **Generate data**
 The system is ready to accept data and serve queries now! The next set of instructions will keep the following loop running in a Psql console in the background while you continue with the other commands in this article. It generates fake data every second or two.
  
-4. In the Cloud Shell Psql console copy and paste the following to exit to the bash console. 
+5. In the Cloud Shell Psql console copy and paste the following to exit to the bash console. 
 
 ```
 \q 
 ```
 
-5. On the Cloud Shell banner click the **editor icon**.
+6. On the Cloud Shell banner click the **editor icon**.
 
 ![](Images/editoricon.png)
 
-6. In the Cloud Shell editor copy and paste (use Contorl+V key to paste in the editor) the following to create the http_request load generator
+7. In the Cloud Shell editor copy and paste (use Contorl+V key to paste in the editor) the following to create the http_request load generator
 
 ```
 -- loop continuously writing records every 1/4 second
@@ -245,16 +263,16 @@ END $$;
 
 ![](Images/editor1.png)
 
-7. On the top right of the Cloud Shell editor click the **ellipse** and choose **Close Editor**.
-8. Click Save on the "Do you want to save" dialog 
+8. On the top right of the Cloud Shell editor click the **ellipse** and choose **Close Editor**.
+9. Click Save on the "Do you want to save" dialog 
 
 ![](Images/savequery.png)
 
-9. Enter the name **load.sql** for the file name and click **Save**.
+10. Enter the name **load.sql** for the file name and click **Save**.
 
 ![](Images/savequery1.png)
 
-10. In the Cloud Shell bash console copy and paste the following then press enter to run **load.sql** in the background. 
+11. In the Cloud Shell bash console copy and paste the following then press enter to run **load.sql** in the background. 
 
 ```
 psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='Password@123' sslmode=require" -f load.sql &
@@ -265,20 +283,20 @@ psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citu
 **Dashboard query**
 The Hyperscale (Citus) hosting option allows multiple nodes to process queries in parallel for speed. For instance, the database calculates aggregates like SUM and COUNT on worker nodes, and combines the results into a final answer.
 
-11. In the Cloud Shell bash console copy and paste the following then press enter to launch Psql again 
+12. In the Cloud Shell bash console copy and paste the following then press enter to launch Psql again 
 
 ```
 psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require"
 ```
 
-12. In the Cloud Shell Psql console enter the following command to verify the real-time load is being generated 
+13. In the Cloud Shell Psql console enter the following command to verify the real-time load is being generated 
 ```
 Select Count(*) from http_request; 
 ```
 
 ![](images/query3countcheck.png)
 
-13. In the Cloud Shell Psql console enter the select command once more to see that the count is increasing 
+14. In the Cloud Shell Psql console enter the select command once more to see that the count is increasing 
 ```
 Select Count(*) from http_request; 
 ```
@@ -287,7 +305,7 @@ Select Count(*) from http_request;
 
 We will run this query to count web requests per minute along with a few statistics.
  
-14. In the Psql console copy and paste the following to see average response time for sites
+15. In the Psql console copy and paste the following to see average response time for sites
 
 ```
 SELECT
