@@ -88,7 +88,7 @@ These steps will instruct you to create a Bash Azure Cloud Shell.
 6. We will need the client IP address of Cloud Shell to configure the firewall in the next step. At the command prompt enter the following command and press return then copy or note the IP address of your cloud shell 
 
 ```
-curl -s https://ifconfig.co**
+curl -s https://ifconfig.co
 ```
 
 ![](Images/fetchip.png)
