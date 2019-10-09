@@ -91,9 +91,7 @@ These steps will instruct you to create a Bash Azure Cloud Shell.
 curl -s https://ifconfig.co**
 ```
 
-Note: To paste in the bash console right click and choose paste.
-
-![](Images/activediradmin.png)
+![](Images/fetchip.png)
 
 
 ### Task 2: Configure a server-level firewall rule
