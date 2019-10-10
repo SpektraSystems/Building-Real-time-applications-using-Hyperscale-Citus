@@ -129,7 +129,7 @@ We will connect to the database group using-----------------
 
 1. Open **Azure Data Studio**, select **New Connection** button to establish connection with the postgreSQL database.
 
-![](Images/azdatastudio.png)
+![](images/azdatastudio.png)
 
 2.  Use following configurations for **Connection Details**:
 * Connection type: select **PostgreSQL** from the dropdown
@@ -139,15 +139,15 @@ We will connect to the database group using-----------------
 * Database Name: **citus**
 * Server Group: For server group name, select **Add server group** from the dropdown and enter your server group name i.e., **postgrexxxxx** as shown below:
 
-![](Images/newconnection2.png)
+![](images/newconnection2.png)
 
 3. **Connection detials** should look similar to the below, then select **Connect**:
 
-![](Images/newconnection1.png)
+![](images/newconnection1.png)
 
 4. After getting connected, you can find your **PostgreSQL Database** under **Server** pane as shown below:
 
-![](Images/newconnection3.png)
+![](images/newconnection3.png)
 
 
 ### Task 2: Create Application Tables
