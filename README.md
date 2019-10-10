@@ -17,6 +17,7 @@ This exercise will help you getting access to environment and getting started wi
 
 ![](images/1registernow.png)
 
+
 2. Once registration is accepted, you will be automatically redirected to the lab activation page. Click on the **Launch Lab** button.<br/>
 
 ![](images/2launchlab.png)
