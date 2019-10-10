@@ -121,7 +121,7 @@ Note: Hyperscale (Citus) communicates over port 5432. If you are trying to conne
 
 ## Exercise 3: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL
 
-When you create your Azure Database for PostgreSQL server, a default database named citus is created. To connect to your database server, you need a connection string and the admin password. Initial connections to Postgres may take up to 2 minutes. If for any reason your shell times out and you restart it you will need to perform the ```curl -s https://ifconfig.co/``` command again and ensure the firewall is updated with the new IP address.
+Here we will start wroking with Azure Data Studio by connecting our database to it.
 
 ### Task 1: Connect to the database using Psql in Azure Data Studio
 
