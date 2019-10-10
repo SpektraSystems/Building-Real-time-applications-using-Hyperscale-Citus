@@ -125,7 +125,7 @@ When you create your Azure Database for PostgreSQL server, a default database na
 
 ### Task 1: Connect to the database using Psql in Azure Data Studio
 
-We will connect to the database group using-----------------
+Now we will connect to PostgreSQL Database through Azure Data Studio.
 
 1. Open **Azure Data Studio**, select **New Connection** button to establish connection with the postgreSQL database.
 
@@ -133,7 +133,7 @@ We will connect to the database group using-----------------
 
 2.  Use following configurations for **Connection Details**:
 * Connection type: select **PostgreSQL** from the dropdown
-* Server Name: **srvxxxxx.postgres.database.azure.com** (go to Azure Database for PostgreSQL server v2 - PREVIEW **srvxxxx**, on the                  top right corner locate the server name)
+* Server Name: **srvxxxxx.postgres.database.azure.com** (go to Azure Database for PostgreSQL server v2 - PREVIEW **srvxxxx**, on the       top right corner locate the server name)
 * Username: **citus**
 * Passwword: **Password@123**
 * Database Name: **citus**
