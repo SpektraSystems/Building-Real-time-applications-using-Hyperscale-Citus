@@ -337,6 +337,7 @@ LIMIT 15;
 ![](images/query4.png)
 
 
+
 **Rollups**
 
 As your data scales we want to keep performance up. We will ensure our dashboard stays fast by regularly rolling up the raw data into an aggregate table. You can experiment with the aggregation duration. Here we will use a per-minute aggregation table, but you could break data into 5, 15, or 60 minutes instead.
@@ -431,7 +432,8 @@ A datatype called hyperloglog, or HLL, can answer the query approximately; it ta
 For non-Hyperscale (Citus) installs you much first you must install the HLL extension and enable it. You would run the Psql command CREATE EXTENSION hll; on all nodes in this case. This is not necessary on Azure as Hyperscale (Citus) already comes with HLL installed, along with other useful Extensions.
 Now we’re ready to track IP addresses in our rollup with HLL. First add a column to the rollup table.
 
-###Task 1:
+###Task 1: Track IP addresses in Rollup
+
  1. Open a **New Query** console and paste the following:
 
 ```
@@ -504,7 +506,7 @@ LIMIT 15;
 HLLs aren’t just faster, they let you do things you couldn’t previously. Say we did our rollups, but instead of using HLLs we saved the exact unique counts. This works fine, but you can’t answer queries such as “how many distinct sessions were there during this one-week period in the past we’ve thrown away the raw data for?”.
 With HLLs, this is easy. You can compute distinct IP counts over a time period with the following query
  
-5. In the Psql console copy and paste the following to compute distinct IP counts over time
+5. open a **New Query** console and paste the following to compute distinct IP counts over time.
 
 ```
 SELECT hll_cardinality(hll_union_agg(distinct_ip_addresses))::bigint
@@ -521,13 +523,13 @@ Hyperscale (Citus) works well with Postgres’ built-in support for unstructured
 
 PostgreSQL has JSONB and JSON data types for storing JSON data. The recommended data type is JSONB because a) indexing capabilities (GIN and GIST) of JSONB compared to JSON and b) JSONB provides compression because of binary format. Here we’ll demonstrate how to incorporate JSONB columns into your data model.
  
-1. In the Psql console copy and paste the following to add a new JSONB column to our rollup table 
+1. Open a **New Query** console and paste the following to add a new JSONB column to our rollup table 
 
 ```
 ALTER TABLE http_request_1min ADD COLUMN country_counters JSONB; 
 ```
 
-2. In the Psql console copy and paste the following to update the rollup_http_request function with country_counters 
+2. Now open a **New Query** console and paste the following to update the rollup_http_request function with country_counters 
 
 ```
 -- function to do the rollup
@@ -571,7 +573,7 @@ $$ LANGUAGE plpgsql;
 
 ![](images/query9rollup.png)
 
-3. In the Psql console copy and paste the following to execute the updated function 
+3. In the **New Query** console enter the following to execute the updated function .
 
 ```
 SELECT rollup_http_request(); 
@@ -581,8 +583,8 @@ SELECT rollup_http_request();
 
 Now, if you want to get the number of requests which came from America in your dashboard, your can modify the dashboard query to look like this.
  
-4. In the Psql console copy and paste the following to see the requests from America 
-
+4. Than replace the above with the following to see the requests from America.
+.
 ```
 SELECT
 request_count, success_count, error_count, average_response_time_msec,
