@@ -30,7 +30,7 @@ This exercise will help you getting access to environment and getting started wi
 
 ### Task 2: Log into your Azure Portal and Verify access to the Lab
 
-In this exercise, you will log into the **Azure Portal** using your Azure credentials. We'll be using the Jump Virtual machine provided for completing this demo. 
+In this exercise, you will log into the **Azure Portal** using your Azure credentials. 
 
 1. Login to **LabVM** by clicking on **GO TO LabVM** button on lab details page. 
 
@@ -60,46 +60,15 @@ In this exercise, you will log into the **Azure Portal** using your Azure creden
 
 ## Exercise 2: Getting started with Hyperscale (Citus)
 
-### Task 1: Create a Cloud Shell
-In order to use the Azure Portal Cloud Shell we will need to create a storage account. The storage account allows you to save files associated with the Cloud Shell so you may use them in various Azure portal activities like running scripts to manage Azure resources.
+For a successfule connection into Hyperscale (Citus) on Azure Database for PostgreSQL, we need to 
 
-These steps will instruct you to create a Bash Azure Cloud Shell.
-1. On the portal banner click on the **Cloud Shell icon**.
+### Task 1: Configure server-level firewall service
 
-![](Images/azurecli.png)
-
-2. On the Welcome to Azure Cloud Shell click **Bash**.
-
-![](Images/)
-
-3. On the You have no storage mounted screen click Show advanced settings.
-
-![](Images/shadvsetting.png)
-
-4. Use following configurations:
-* Resource Group: existing resource group i.e., **rg-XXXXX**.
-* Storage Account: 
-* File Share: 
-
-5. Then select **Create Storage**.
-
-![](Images/storageacc.png)
-
-6. We will need the client IP address of Cloud Shell to configure the firewall in the next step. At the command prompt enter the following command and press return then copy or note the IP address of your cloud shell 
-
-```
-curl -s https://ifconfig.co
-```
-
-![](Images/fetchip.png)
-
-
-### Task 2: Configure a server-level firewall rule
-The Hyperscale (Citus) on Azure Database for PostgreSQL service uses a firewall at the server-level. By default, the firewall prevents all external applications and tools from connecting to the coordinator node and any databases inside. We must add a rule to open the firewall for a specific IP address range.
-
-Follow these instructions to allow you Bash Cloud Shell access to the Hyperscale (Citus) server group.
+Follow the instructions given below to allow yourself access to the Hyperscale (Citus) server group.
  
-1. In the upper left of the Azure Portal click **Home**, under **Azure services** click **Azure Database for PostgreSQL servers**. 
+1. Navigate to **Azure Portal**.
+
+2. In the upper left of the Azure Portal go to **Home**, theb locate **Azure services** and select **Azure Database for PostgreSQL servers** on homepage.
 
 ![](Images/azpostgresql.png)
 
@@ -109,15 +78,10 @@ Follow these instructions to allow you Bash Cloud Shell access to the Hyperscale
 ![](Images/azpostgresql1.png)
 
 
-3. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES**.
+3. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES** and **save** the changes.
 
 ![](Images/2postgresqlfw.png)
 
-4. Then add **Firewall Rule**, name it **Rule1** and enter IP address you copied previously in the **START IP** and **END IP** boxes.
-
-![](Images/3postgresql.png)
-
-Note: Hyperscale (Citus) communicates over port 5432. If you are trying to connect from within a corporate network, outbound traffic over port 5432 may not be allowed by your network's firewall. If so, you cannot connect to your Azure SQL Database server unless your IT department opens port 5432.
 
 ## Exercise 3: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL
 
@@ -416,7 +380,7 @@ The rollups make queries faster, but we still need to expire old data to avoid u
 ```
 DELETE FROM http_request WHERE ingest_time < now() - interval '1 day';
 DELETE FROM http_request_1min WHERE ingest_time < now() - interval '1 month';
-```
+``` 
 
 ***In production you could wrap these queries in a function and call it every minute in a cron job.
 Data expiration can go even faster by using latest time partitioning feature in PostgreSQL in addition to sharding with Hyperscale (Citus). You could also use extensions like pg_partman to automate time partition creation and maintenance.
@@ -583,7 +547,7 @@ SELECT rollup_http_request();
 
 Now, if you want to get the number of requests which came from America in your dashboard, your can modify the dashboard query to look like this.
  
-4. Than replace the above with the following to see the requests from America.
+4. Then replace the above with the following to see the requests from America.
 .
 ```
 SELECT
