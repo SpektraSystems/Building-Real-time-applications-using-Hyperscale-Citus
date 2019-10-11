@@ -85,9 +85,11 @@ Here we will start wroking with Azure Data Studio by connecting our database to 
 
 Now we will connect to PostgreSQL Database through Azure Data Studio.
 
-1. Open **Azure Data Studio**. On the left click on **Extension** icon, then in the search bar enter **PostgreSQL** and selcet **Install**.
+1. Open **Azure Data Studio**. On the left click on **Extension** icon, then in the search bar enter **PostgreSQL** and select **Install**. 
 
 ![](images/postext.png)
+
+After this restart the Azure Data Studio.
 
 2. Now select **New Connection** button to establish connection with the postgreSQL database.
 
