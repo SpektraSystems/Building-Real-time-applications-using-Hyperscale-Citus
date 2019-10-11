@@ -20,11 +20,11 @@ This exercise will help you getting access to environment and getting started wi
 
 2. Once registration is accepted, you will be automatically redirected to the lab activation page. Click on the **Launch Lab** button.<br/>
 
-![](images/2launchlab.png)
+![](images/launchlabpg.png)
 
 3. You will see the environment details soon below.<br/>
 
-![](images/labdetailpg.png)
+![](images/labdetpg.png)
 
 4. Please ensure to use provided Azure Credentials during the course of Lab. 
 
@@ -33,30 +33,23 @@ This exercise will help you getting access to environment and getting started wi
 
 In this exercise, you will log into the **Azure Portal** using your Azure credentials. 
 
-1. Login to **LabVM** by clicking on **GO TO LabVM** button on lab details page. 
+1. Open Azure Portal by by browsing https://portal.azure.com.
 
-![](images/gotojumpvm.png)
-
-2. Open Azure Portal by launching shortcut from the desktop.
-
-![](images/azureportallink.png)
-
-3. Enter the **Username** which was displayed in the previous window and click on **Next**.<br/>
+2. Enter the **Username** which was displayed in the previous window and click on **Next**.<br/>
 
 ![](images/1signin.png)
 
-4. Enter the **Password** and click on **Sign in**.<br/>
+3. Enter the **Password** and click on **Sign in**.<br/>
 
 ![](images/2signin.png)
 
-5. In the Welcome to **Microsoft Azure** pop-up window, click **Maybe Later**. Now you have login successfully.
+4. In the Welcome to **Microsoft Azure** pop-up window, click **Maybe Later**. Now you have login successfully.
 
 ![](images/maybelater1.png)
 
-6. You will see one Resource Group on which you have access. 
-7. Click on **rg-XXXXX** Resource Group which contains the pre-deployed Azure SQL Database for PostgreSQL.
+5. You will see a Resource Group on which you have access. Click on **rg-XXXXX** Resource Group which contains the pre-deployed Azure SQL Database for PostgreSQL.
 
-![](images/overview1.png)
+![](images/overview.png)
 
 
 ## Exercise 2: Getting started with Hyperscale (Citus)
@@ -92,13 +85,17 @@ Here we will start wroking with Azure Data Studio by connecting our database to 
 
 Now we will connect to PostgreSQL Database through Azure Data Studio.
 
-1. Open **Azure Data Studio**, select **New Connection** button to establish connection with the postgreSQL database.
+1. Open **Azure Data Studio**. On the left click on **Extension** icon, then in the search bar enter **PostgreSQL** and selcet **Install**.
+
+![](images/postext.png)
+
+2. Now select **New Connection** button to establish connection with the postgreSQL database.
 
 
 ![](images/azdatastudio.png)
 
 
-2.  Use following configurations for **Connection Details**:
+3.  Use following configurations for **Connection Details**:
 * Connection type: select **PostgreSQL** from the dropdown
 * Server Name: **srvxxxxx.postgres.database.azure.com** (go to Azure Database for PostgreSQL server v2 - PREVIEW **srvxxxx**, on the       top right corner locate the server name)
 * Username: **citus**
@@ -110,13 +107,13 @@ Now we will connect to PostgreSQL Database through Azure Data Studio.
 ![](images/newconnection2.png)
 
 
-3. **Connection detials** should look similar to the below, then select **Connect**:
+4. **Connection details** should look similar to the below, then select **Connect**:
 
 
 ![](images/newconnection1.png)
 
 
-4. After getting connected, you can find your **PostgreSQL Database** under **Server** pane as shown below:
+5. After getting connected, you can find your **PostgreSQL Database** under **Server** pane as shown below:
 
 
 ![](images/newconnection3.png)
@@ -182,7 +179,7 @@ CHECK (minute = date_trunc('minute', minute))
 
 A hyperscale deployment stores table rows on different nodes based on the value of a user-designated column. This "distribution column" marks how data is sharded across nodes. Let's set the distribution column to be site_id, the shard key.
 
-4. Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. 
+5. Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. 
 
 ```
 SELECT create_distributed_table('http_request', 'site_id'); 
@@ -199,17 +196,7 @@ Notice that both tables are sharded on site_id. Hence there’s a 1-to-1 corresp
 **Generate data**
 The system is ready to accept data and serve queries now! The next set of instructions will keep the following loop running in a Psql console in the background while you continue with the other commands in this article. It generates fake data every second or two.
  
-5. In the Cloud Shell Psql console copy and paste the following to exit to the bash console. 
-
-```
-\q 
-```
-
-6. On the Cloud Shell banner click the **editor icon**.
-
-![](Images/editoricon.png)
-
-7. In the Cloud Shell editor copy and paste (use Contorl+V key to paste in the editor) the following to create the http_request load generator
+6. Open **New Query** console and paste the following query to create the http_request load generator.
 
 ```
 -- loop continuously writing records every 1/4 second
@@ -237,35 +224,13 @@ END LOOP;
 END $$;
 ```
 
-![](Images/editor1.png)
+![](Images/loadsql.png)
 
-8. On the top right of the Cloud Shell editor click the **ellipse** and choose **Close Editor**.
-9. Click Save on the "Do you want to save" dialog 
-
-![](Images/savequery.png)
-
-10. Enter the name **load.sql** for the file name and click **Save**.
-
-![](Images/savequery1.png)
-
-11. In the Cloud Shell bash console copy and paste the following then press enter to run **load.sql** in the background. 
-
-```
-psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='Password@123' sslmode=require" -f load.sql &
-```
-
-![](Images/query.png)
 
 **Dashboard query**
 The Hyperscale (Citus) hosting option allows multiple nodes to process queries in parallel for speed. For instance, the database calculates aggregates like SUM and COUNT on worker nodes, and combines the results into a final answer.
 
-12. In the Cloud Shell bash console copy and paste the following then press enter to launch Psql again 
-
-```
-psql "host=srvxxxxx.postgres.database.azure.com port=5432 dbname=citus user=citus password='sp*4ytajvr2y4fa4' sslmode=require"
-```
-
-13. Open **New Query** console and enter the following command to verify the real-time load is being generated.
+7. Open **New Query** console and enter the following command to verify the real-time load is being generated from the previous step.
 
 ```
 Select Count(*) from http_request; 
@@ -273,7 +238,7 @@ Select Count(*) from http_request;
 
 ![](images/query3countcheck.png)
 
-14. In the Cloud Shell Psql console enter the select command once more to see that the count is increasing. You will observe increase in the count.
+8. In the Cloud Shell Psql console enter the select command once more to see that the count is increasing. You will observe increase in the count.
 
 ```
 Select Count(*) from http_request; 
@@ -282,7 +247,7 @@ Select Count(*) from http_request;
 ![](images/query3countcheck1.png)
 
  
-15. We will run this query to count web requests per minute along with a few statistics. For this open **New Query** console, then paste the following to see average response time for sites.
+9. We will run this query to count web requests per minute along with a few statistics. For this open **New Query** console, then paste the following to see average response time for sites.
 
 ```
 SELECT
@@ -302,8 +267,7 @@ LIMIT 15;
 ![](images/query4.png)
 
 
-
-**Rollups**
+### Task 3: Create Rollup functions
 
 As your data scales we want to keep performance up. We will ensure our dashboard stays fast by regularly rolling up the raw data into an aggregate table. You can experiment with the aggregation duration. Here we will use a per-minute aggregation table, but you could break data into 5, 15, or 60 minutes instead.
 
@@ -345,7 +309,7 @@ $$ LANGUAGE plpgsql;
 ![](images/query5rollup.png)
 
 
-2. In the Psql console copy and paste the following to execute the rollup function 
+2. In the Psql console copy and paste the following to execute the rollup function.
 ```
 SELECT rollup_http_request(); 
 ```
@@ -397,7 +361,7 @@ A datatype called hyperloglog, or HLL, can answer the query approximately; it ta
 For non-Hyperscale (Citus) installs you much first you must install the HLL extension and enable it. You would run the Psql command CREATE EXTENSION hll; on all nodes in this case. This is not necessary on Azure as Hyperscale (Citus) already comes with HLL installed, along with other useful Extensions.
 Now we’re ready to track IP addresses in our rollup with HLL. First add a column to the rollup table.
 
-###Task 1: Track IP addresses in Rollup
+### Task 1: Track IP addresses in Rollup
 
  1. Open a **New Query** console and paste the following:
 
