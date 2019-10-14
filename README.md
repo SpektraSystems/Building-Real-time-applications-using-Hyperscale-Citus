@@ -64,17 +64,17 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 
 2. In the upper left of the Azure Portal go to **Home**, theb locate **Azure services** and select **Azure Database for PostgreSQL servers** on homepage.
 
-![](Images/azpostgresql.png)
+![](images/azpostgresql.png)
 
 
 2. Click on your PostgreSQL Database **postgreXXXXX**
 
-![](Images/azpostgresql1.png)
+![](images/azpostgresql1.png)
 
 
 3. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES** and **save** the changes.
 
-![](Images/2postgresqlfw.png)
+![](images/2postgresqlfw.png)
 
 
 ## Exercise 3: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL
