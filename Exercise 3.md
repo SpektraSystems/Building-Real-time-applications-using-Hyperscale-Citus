@@ -1,8 +1,8 @@
-# Lab 2: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL
+## Lab 2: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL
 
 Here we will start wroking with Azure Data Studio by connecting our database to it.
 
-## Exercise 1: Connect to the database using Psql in Azure Data Studio
+### Task 1: Connect to the database using Psql in Azure Data Studio
 
 Now we will connect to PostgreSQL Database through Azure Data Studio.
 
