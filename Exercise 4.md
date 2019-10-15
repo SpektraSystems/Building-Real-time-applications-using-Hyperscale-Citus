@@ -54,7 +54,8 @@ CHECK (minute = date_trunc('minute', minute))
 ![](images/querydisplaytable1.png)
 
 
-**Shard tables across nodes**
+
+### Shard tables across nodes
 
 A hyperscale deployment stores table rows on different nodes based on the value of a user-designated column. This "distribution column" marks how data is sharded across nodes. Let's set the distribution column to be site_id, the shard key.
 
