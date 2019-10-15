@@ -38,4 +38,5 @@ Now we will connect to PostgreSQL Database through Azure Data Studio.
 5. After getting connected, you can find your **PostgreSQL Database** under **Server** pane as shown below:
 
 
-![](newconnection3.png)
+
+![](images/newconnection3.png	)
