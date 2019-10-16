@@ -51,7 +51,7 @@ CHECK (minute = date_trunc('minute', minute))
 4. Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. 
 
 
-![](images/querydisplaytable1.png)
+![](images/query1displaytable.png)
 
 
 
