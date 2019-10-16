@@ -8,4 +8,4 @@
 
 3. Refer the **Environment Details** tab for any other lab credentials/details.
 
-4. Click **Next** to proceed further.
+4. Click **Next** on the bottom right of this page.
