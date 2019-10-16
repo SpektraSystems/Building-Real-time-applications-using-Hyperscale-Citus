@@ -20,6 +20,6 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 
 4. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES** and **save** the changes.
 
-<kbd>![](images/2postgresqlfw.png)<kbd>
+<kbd>![](images/2postgresqlfw.png)</kbd>
 
 5. Click **Next** on the bottom right of this page.
