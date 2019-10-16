@@ -40,3 +40,5 @@ Now we will connect to PostgreSQL Database through Azure Data Studio.
 
 
 ![](images/newconnection3.png	)
+
+6. Click **Next** on the bottom right of this page.
