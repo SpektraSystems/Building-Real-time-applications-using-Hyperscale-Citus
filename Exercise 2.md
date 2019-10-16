@@ -13,13 +13,13 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 ![](images/azpostgresql.png)
 
 
-2. Click on your PostgreSQL Database **postgreXXXXX**
+3. Click on your PostgreSQL Database **postgreXXXXX**
 
 ![](images/azpostgresql1.png)
 
 
-3. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES** and **save** the changes.
+4. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES** and **save** the changes.
 
 ![](images/2postgresqlfw.png)
 
-4. Click **Next** on the bottom right of this page.
+5. Click **Next** on the bottom right of this page.
