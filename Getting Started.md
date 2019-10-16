@@ -1,6 +1,6 @@
 # Getting Started
 
-## Sign in to the Azure portal
+## Lab 0: Sign in to the Azure portal
 
 1. If you are already logged into the Azure portal twice skip to the next page. Click **Next** on the bottom right of this window
 
