@@ -15,7 +15,7 @@ Now we’re ready to track IP addresses in our rollup with HLL. First add a colu
 ALTER TABLE http_request_1min ADD COLUMN distinct_ip_addresses hll; 
 ```
 
-![](images/query7rollup.png)
+<kbd>![](images/query7rollup.png)</kbd>
 
  
 2. Next we will use our custom aggregation to populate the column. Open a **New Query** console and paste the following to add it to the query of our rollup function.
@@ -52,7 +52,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-![](images/query8rollup.png)
+<kbd>![](images/query8rollup.png)</kbd>
 
 3.	Then open a **New Query** console and paste the following to execute the updated function.
 
@@ -60,7 +60,7 @@ $$ LANGUAGE plpgsql;
 SELECT rollup_http_request(); 
 ```
 
-![](images/query8rollup1.png)
+<kbd>![](images/query8rollup1.png)</kbd>
 
  
 4. Dashboard queries are a little more complicated, you have to read out the distinct number of IP addresses by calling the hll_cardinality function.
@@ -76,7 +76,7 @@ WHERE ingest_time > date_trunc('minute', now()) - interval '5 minutes'
 LIMIT 15;
 ```
 
-![](images/query8rollup2.png)
+<kbd>![](images/query8rollup2.png)</kbd>
 
 HLLs aren’t just faster, they let you do things you couldn’t previously. Say we did our rollups, but instead of using HLLs we saved the exact unique counts. This works fine, but you can’t answer queries such as “how many distinct sessions were there during this one-week period in the past we’ve thrown away the raw data for?”.
 With HLLs, this is easy. You can compute distinct IP counts over a time period with the following query
@@ -90,7 +90,7 @@ WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
 ```
 
-![](images/query8rollup3.png)
+<kbd>![](images/query8rollup3.png)</kbd>
 
 ## Task 2: Unstructured Data with JSONB
 
@@ -146,7 +146,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-![](images/query9rollup.png)
+<kbd>![](images/query9rollup.png)</kbd>
 
 3. In the **New Query** console enter the following to execute the updated function .
 
@@ -154,7 +154,7 @@ $$ LANGUAGE plpgsql;
 SELECT rollup_http_request(); 
 ```
 
-![](images/rollup10.png)
+<kbd>![](images/rollup10.png)</kbd>
 
 Now, if you want to get the number of requests which came from America in your dashboard, your can modify the dashboard query to look like this.
  
@@ -169,6 +169,6 @@ WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
 ```
 
-![](images/query9rollup1.png	)
+<kbd>![](images/query9rollup1.png)</kbd>
 
 5. Click **Next** on the bottom right of this page.
