@@ -74,4 +74,4 @@ LIMIT 15;
 
 ![](images/query4.png)
 
-
+5. Click **Next** on the bottom right of this page.
