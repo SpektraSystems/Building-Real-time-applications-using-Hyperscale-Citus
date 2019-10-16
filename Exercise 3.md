@@ -6,7 +6,7 @@ Let's create the tables for http requests, per-minute aggregates and a table tha
 
 1. Expand the server group **postgresxxxxx**, then the server and under server expand **Database**. Right click on the database **citus** and select **New Query**.
 
-![](images/1query.png)
+<kbd>![](images/1query.png)</kbd>
 
 2. In the console copy and paste the following to create the tables.
 
@@ -39,19 +39,19 @@ CHECK (minute = date_trunc('minute', minute))
 ```
 
 
-![](images/query1run.png)
+<kbd>![](images/query1run.png)</kbd>
 
 
 3. On running the query a message will be displayed: **Commands completed successfully**.
 
 
-![](images/query1msg.png)
+<kbd>![](images/query1msg.png)</kbd>
 
 
 4. Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. 
 
 
-![](images/query1displaytable.png)
+<kbd>![](images/query1displaytable.png)</kbd>
 
 
 
@@ -66,7 +66,7 @@ SELECT create_distributed_table('http_request', 'site_id');
 SELECT create_distributed_table('http_request_1min', 'site_id'); 
 ```
 
-![](images/query2.png)
+<kbd>![](images/query2.png)</kbd>
 
 
 The above commands create shards for both the tables across worker nodes. Shards are nothing but PostgreSQL tables that hold a set of sites. All the data for a particular site for a table will live in the same shard.
