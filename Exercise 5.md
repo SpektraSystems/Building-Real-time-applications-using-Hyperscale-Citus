@@ -37,7 +37,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-![](images/query5rollup.png)
+<kbd>![](images/query5rollup.png)</kbd>
 
 
 2. In the Psql console copy and paste the following to execute the rollup function.
@@ -45,7 +45,7 @@ $$ LANGUAGE plpgsql;
 SELECT rollup_http_request(); 
 ```
 
-![](images/query5rollup1.png)
+<kbd>![](images/query5rollup1.png)</kbd>
 
 Note: The above function should be called every minute. You could do this by using a PostgreSQL extension called pg_cron which allows you to schedule recurring queries directly from the database. 
 
@@ -55,7 +55,7 @@ Note: The above function should be called every minute. You could do this by usi
 SELECT cron.schedule('* * * * *','SELECT rollup_http_request();'); 
 ```
 
-![](images/query5rollup2.png)
+<kbd>![](images/query5rollup2.png)</kbd>
 
 
 4. Open a **New Query** console and paste the following to run the query on the 1 minute aggregated table.
@@ -68,7 +68,7 @@ WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
 ```
 
-![](images/query6rollup.png)
+<kbd>![](images/query6rollup.png)</kbd>
 
 ***Expiring Old Data
 The rollups make queries faster, but we still need to expire old data to avoid unbounded storage costs. Simply decide how long you’d like to keep data for each granularity, and use standard queries to delete expired data. In the following example, we decided to keep raw data for one day, and per-minute aggregations for one month. You don't need to run these commands right now as we don't have any old data to expire.***
