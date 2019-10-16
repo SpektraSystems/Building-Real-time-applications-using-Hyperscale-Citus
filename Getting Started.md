@@ -1,6 +1,6 @@
 # Getting Started
 
-## Login to the Azure Portal
+## Lab 0: Login to the Azure Portal
 
 1. In the virtual machine provided on the left side, open a new browser window and sign in to the **Azure Portal** (http://portal.azure.com).
 
