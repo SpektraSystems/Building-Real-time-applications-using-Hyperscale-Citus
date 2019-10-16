@@ -84,3 +84,4 @@ Data expiration can go even faster by using latest time partitioning feature in 
 ***Those are the basics! We provided an architecture that ingests HTTP events and then rolls up these events into their pre-aggregated form. This way, you can both store raw events and also power your analytical dashboards with subsecond queries.
 The next sections extend upon the basic architecture and show you how to resolve questions which often appear.***
 
+5. Click **Next** on the bottom right of this page.
