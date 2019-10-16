@@ -30,7 +30,7 @@ END LOOP;
 END $$;
 ```
 
-![](images/loadsql.png)
+<kbd>![](images/loadsql.png)</kbd>
 
 
 
@@ -44,7 +44,7 @@ The Hyperscale (Citus) hosting option allows multiple nodes to process queries i
 Select Count(*) from http_request; 
 ```
 
-![](images/query3countcheck.png)
+<kbd>![](images/query3countcheck.png)</kbd>
 
 3. In the Cloud Shell Psql console enter the select command once more to see that the count is increasing. You will observe increase in the count.
 
@@ -52,7 +52,7 @@ Select Count(*) from http_request;
 Select Count(*) from http_request; 
 ```
 
-![](images/query3countcheck1.png)
+<kbd>![](images/query3countcheck1.png)</kbd>
 
  
 4. We will run this query to count web requests per minute along with a few statistics. For this open **New Query** console, then paste the following to see average response time for sites.
@@ -72,6 +72,6 @@ ORDER BY minute ASC
 LIMIT 15;
 ```
 
-![](images/query4.png)
+<kbd>![](images/query4.png)</kbd>
 
 5. Click **Next** on the bottom right of this page.
