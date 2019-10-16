@@ -81,7 +81,7 @@ LIMIT 15;
 HLLs aren’t just faster, they let you do things you couldn’t previously. Say we did our rollups, but instead of using HLLs we saved the exact unique counts. This works fine, but you can’t answer queries such as “how many distinct sessions were there during this one-week period in the past we’ve thrown away the raw data for?”.
 With HLLs, this is easy. You can compute distinct IP counts over a time period with the following query
  
-5. open a **New Query** console and paste the following to compute distinct IP counts over time.
+6. open a **New Query** console and paste the following to compute distinct IP counts over time.
 
 ```
 SELECT hll_cardinality(hll_union_agg(distinct_ip_addresses))::bigint
@@ -170,3 +170,5 @@ LIMIT 15;
 ```
 
 ![](images/query9rollup1.png	)
+
+5. Click **Next** on the bottom right of this page.
