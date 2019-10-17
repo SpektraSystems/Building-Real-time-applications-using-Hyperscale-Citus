@@ -2,7 +2,7 @@
 
 ### Lab 0: Sign in to the Azure portal
 
-1. Sign in the Azure Portal by navigating to https://portal.azure.com/ in your browser.
+1. Sign in to the Azure Portal by navigating to https://portal.azure.com/ in your browser.
   
 2. Use the azure credentials provided in the **Environment Details** tab to log in to the portal.
 
