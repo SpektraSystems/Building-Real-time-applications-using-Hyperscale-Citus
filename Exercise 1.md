@@ -1,4 +1,4 @@
-# Lab 1: Getting started with Hyperscale (Citus)
+## Lab 1: Getting started with Hyperscale (Citus)
 
 For a successful connection into Hyperscale (Citus) on Azure Database for PostgreSQL, we need to enable firewall services.
 
