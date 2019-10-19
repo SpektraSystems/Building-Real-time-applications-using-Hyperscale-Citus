@@ -1,6 +1,6 @@
 # Getting Started
 
-## **Lab 0: Sign in to the Azure portal**
+## Lab 0: Sign in to the Azure portal
 
 1. Sign in to the **Azure Portal** by navigating to https://portal.azure.com/ in your browser.
 
