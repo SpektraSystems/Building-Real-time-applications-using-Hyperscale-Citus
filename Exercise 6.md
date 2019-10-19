@@ -99,52 +99,58 @@ LIMIT 15;
 
 <kbd>![](images/query8rollup3.png)</kbd>
 
-## Task 2: Unstructured Data with JSONB
+## Task 2: TopN for your Postgres Database
 
-Hyperscale (Citus) works well with Postgres’ built-in support for unstructured data types. To demonstrate this, let’s keep track of the number of visitors which came from each country. Using a semi-structure data type saves you from needing to add a column for every individual country and ending up with rows that have hundreds of sparsely filled columns. 
+To find the top occurring item you generally need to count through all the records. Counting the clicks in your web app, the number of times you’ve listened to song, or the number of downloads of your project. It is all about counting. Counting, sorting, and limiting the list in Postgres is straightforward, and this works great on smaller sets of data. What if there are thousands of events? Machines these days are pretty fast so this isn’t much of a problem. Millions is even acceptable. Billions? That may take a bit longer. 
 
-PostgreSQL has JSONB and JSON data types for storing JSON data. The recommended data type is JSONB because a) indexing capabilities (GIN and GIST) of JSONB compared to JSON and b) JSONB provides compression because of binary format. Here we’ll demonstrate how to incorporate JSONB columns into your data model.
+To solve the above problem you have the topN extension. TopN is an open source PostgreSQL extension that returns the top values in a database according to some criteria. TopN takes elements in a data set, ranks them according to a given rule, and picks the top elements in that data set. When doing this, TopN applies an approximation algorithm to provide fast results using few compute and memory resources.
+
+The TopN extension becomes useful when you want to materialize top values, incrementally update these top values, and/or merge top values from different time intervals. you can think of TopN as hll’s cousin.
+
+For **Non-Hyperscale (Citus)**  first you must install the TopN extension and enable it. You would run the Psql command **CREATE EXTENSION topn**; on all nodes in this case. This is not necessary on Azure as Hyperscale (Citus) already comes with TopN installed, along with other useful Extensions.
+
  
-1. Open a **New Query** console and paste the following to add a new JSONB column to our rollup table 
+1. Open a **New Query** console and paste the following to add a new JSONB column top_urls_1000 to our rollup table. This stores the top 1000 urls for the minute and the site_id in the rollup table.
 
 ```
-ALTER TABLE http_request_1min ADD COLUMN country_counters JSONB; 
+ALTER TABLE http_request_1min ADD COLUMN top_urls_1000 JSONB;
 ```
 
-2. Now open a **New Query** console and paste the following to update the rollup_http_request function with country_counters 
+2. Now open a **New Query** console and paste the following to add it to the query of our rollup function.
 
 ```
--- function to do the rollup
 CREATE OR REPLACE FUNCTION rollup_http_request() RETURNS void AS $$
 DECLARE
 curr_rollup_time timestamptz := date_trunc('minute', now());
 last_rollup_time timestamptz := minute from latest_rollup;
 BEGIN
 INSERT INTO http_request_1min (
-    site_id, ingest_time, request_count,
-    success_count, error_count, average_response_time_msec,
-    distinct_ip_addresses,
-    country_counters
+    site_id, ingest_time, request_country, request_count,
+    success_count, error_count, sum_response_time_msec,
+    distinct_ip_addresses,top_urls_1000 
 ) SELECT
     site_id,
     date_trunc('minute', ingest_time),
+    request_country,
     COUNT(1) as request_count,
     SUM(CASE WHEN (status_code between 200 and 299) THEN 1 ELSE 0 END) as success_count,
     SUM(CASE WHEN (status_code between 200 and 299) THEN 0 ELSE 1 END) as error_count,
-    SUM(response_time_msec) / COUNT(1) AS average_response_time_msec,
+    SUM(response_time_msec) AS sum_response_time_msec,
     hll_add_agg(hll_hash_text(ip_address)) AS distinct_ip_addresses,
-    jsonb_object_agg(request_country, country_count) AS country_counters
-FROM (
-    SELECT *,
-        count(1) OVER (
-        PARTITION BY site_id, date_trunc('minute', ingest_time), request_country
-        ) AS country_count
-    FROM http_request
-    ) h
+    topn_add_agg(url::text) AS top_urls_1000
+FROM http_request
 -- roll up only data new since last_rollup_time
 WHERE date_trunc('minute', ingest_time) <@
         tstzrange(last_rollup_time, curr_rollup_time, '(]')
-GROUP BY 1, 2;
+GROUP BY 1, 2,3
+ON CONFLICT (site_id,ingest_time,request_country)
+DO UPDATE
+SET request_count = http_request_1min.request_count + excluded.request_count,
+success_count = http_request_1min.success_count + excluded.success_count,
+error_count = http_request_1min.error_count + excluded.error_count,
+sum_response_time_msec = http_request_1min.sum_response_time_msec + excluded.sum_response_time_msec,
+distinct_ip_addresses = hll_union(http_request_1min.distinct_ip_addresses,excluded.distinct_ip_addresses),
+top_urls_1000 = topn_union(http_request_1min.top_urls_1000, excluded.top_urls_1000);
 
 -- update the value in latest_rollup so that next time we run the
 -- rollup it will operate on data newer than curr_rollup_time
@@ -155,7 +161,10 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/query9rollup.png)</kbd>
 
-3. In the **New Query** console enter the following to execute the updated function .
+The INSERT INTO statement now has **top_urls_1000** and the SELECT now has **topn_add_agg(url::text) AS top_urls_1000** added into the rollup_http_request function.
+
+
+3. In the Psql console copy and paste the following to execute the updated function.
 
 ```
 SELECT rollup_http_request(); 
@@ -163,17 +172,25 @@ SELECT rollup_http_request();
 
 <kbd>![](images/rollup10.png)</kbd>
 
-Now, if you want to get the number of requests which came from America in your dashboard, your can modify the dashboard query to look like this.
- 
-4. Then replace the above with the following to see the requests from America.
-.
+4.	Dashboard query to get the top urls per minute over the last 5 minutes. If you observe we query the top_urls_1000 column using the topn() function to get only the top most url per minute.
+
 ```
-SELECT
-request_count, success_count, error_count, average_response_time_msec,
-COALESCE(country_counters->>'USA', '0')::int AS american_visitors
+SELECT site_id, ingest_time as minute, request_count, success_count,
+error_count, sum_response_time_msec/request_count as average_response_time_msec,
+hll_cardinality(distinct_ip_addresses)::bigint AS distinct_ip_address_count
+,(topn(http_request_1min.top_urls_1000,1)).*
 FROM http_request_1min
-WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
-LIMIT 15;
+WHERE ingest_time > date_trunc('minute', now()) - interval '5 minutes' LIMIT 15;
+```
+
+<kbd>![](images/query9rollup1.png)</kbd>
+
+5. In the Psql console copy and paste the following to create a report for the top 10 urls in the last 5 minutes. If you observe the query uses topn_union_agg to aggregate the minutely topn values over the last 5 minutes.
+
+```
+SELECT (topn(topn_agg,10)).item as top_urls from (
+SELECT topn_union_agg(http_request_1min.top_urls_1000) topn_agg 
+FROM http_request_1min WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval) a; 
 ```
 
 <kbd>![](images/query9rollup1.png)</kbd>
