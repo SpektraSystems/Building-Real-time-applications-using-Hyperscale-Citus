@@ -1,4 +1,4 @@
-## Lab 6: Approximate Distinct Counts
+## **Lab 6: Approximate Distinct Counts**
 
 A common question in HTTP operational analytics deals with approximate distinct counts: How many unique visitors visited your site over the last month? Answering this question exactly requires storing the list of all previously-seen visitors in the rollup tables, a prohibitively large amount of data. However an approximate answer is much more manageable.
 
