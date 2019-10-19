@@ -82,7 +82,7 @@ WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
 LIMIT 15;
 ```
 
-<kbd>![](images/query6rollup.png)</kbd>
+<kbd>![](images/lab5.png)</kbd>
 
 ### Expiring Old Data
 
