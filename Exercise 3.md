@@ -66,7 +66,7 @@ CHECK (minute = date_trunc('minute', minute))
 <kbd>![](images/querymsg1.png)</kbd>
 
 
-4. Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. 
+4. Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
 
 
 <kbd>![](images/query1table.png)</kbd>
