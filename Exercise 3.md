@@ -1,4 +1,4 @@
-## Lab 3: Create Application Tables
+## **Lab 3: Create Application Tables**
 
 The data we’re dealing with is an immutable stream of log data that we will be inserting directly into Hyperscale (Citus). It’s also common for log data to first be routed through something like Kafka. Kafka has many benefits like allowing you to pre-aggregate the data so high volumes of data are manageable.
 On this page we will create a simple schema for ingesting HTTP event data, shard it, create load and then query.
