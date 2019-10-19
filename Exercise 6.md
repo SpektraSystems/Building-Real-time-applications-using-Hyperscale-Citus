@@ -198,4 +198,4 @@ FROM http_request_1min WHERE ingest_time > date_trunc('minute', now()) - '5 minu
 
 <kbd>![](images/4lab6.png)</kbd>
 
-5. Click **Next** on the bottom right of this page.
+6. Click **Next** on the bottom right of this page.
