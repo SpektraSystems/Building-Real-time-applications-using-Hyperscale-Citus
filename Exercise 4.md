@@ -46,7 +46,7 @@ Select Count(*) from http_request;
 
 <kbd>![](images/query3countcheck.png)</kbd>
 
-3. In the Cloud Shell Psql console enter the select command once more to see that the count is increasing. You will observe increase in the count.
+3. In the console enter the select command once more to see that the count is increasing. You will observe increase in the count.
 
 ```
 Select Count(*) from http_request; 
