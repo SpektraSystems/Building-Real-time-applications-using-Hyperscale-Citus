@@ -10,7 +10,7 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 
 2. In the upper left of the Azure Portal go to **Home**, theb locate **Azure services** and select **Azure Database for PostgreSQL servers** on homepage.
 
-(images/azpostgresql.png)
+![](images/azpostgresql.png)
 
 
 3. Click on your PostgreSQL Database **postgreXXXXX**
