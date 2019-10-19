@@ -1,4 +1,4 @@
-## Lab 5: Create Rollup functions
+## **Lab 5: Create Rollup functions**
 
 As your data scales we want to keep performance up. We will ensure our dashboard stays fast by regularly rolling up the raw data into an aggregate table. You can experiment with the aggregation duration. Here we will use a per-minute aggregation table, but you could break data into 5, 15, or 60 minutes instead.
 
