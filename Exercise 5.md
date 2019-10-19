@@ -51,7 +51,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-<kbd>![](images/query5rollup.png)</kbd>
+<kbd>![](images/1rollup.png)</kbd>
 
 
 2. In the Psql console copy and paste the following to execute the rollup function.
@@ -69,7 +69,7 @@ Note: The above function should be called every minute. You could do this by usi
 SELECT cron.schedule('* * * * *','SELECT rollup_http_request();'); 
 ```
 
-<kbd>![](images/query5rollup2.png)</kbd>
+<kbd>![](images/schedule.png)</kbd>
 
 
 4. Open a **New Query** console and paste the following to run the query on the 1 minute aggregated table.
