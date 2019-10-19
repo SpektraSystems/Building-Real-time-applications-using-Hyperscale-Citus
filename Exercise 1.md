@@ -10,17 +10,17 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 
 2. In the upper left of the Azure Portal go to **Home**, theb locate **Azure services** and select **Azure Database for PostgreSQL servers** on homepage.
 
-<kbd>![](images/azpostgresql.png)</kbd>
+(images/azpostgresql.png)
 
 
 3. Click on your PostgreSQL Database **postgreXXXXX**
 
-<kbd>![](images/azpostgresql1.png)</kbd>
+![](images/azpostgresql1.png)
 
 
 4. On the left side navigation of the overview pane under **Security** click **Networking** and put **Allow Azure Service** to **YES**.
 
-<kbd>![](images/2postgresqlfw.png)</kbd>
+![](images/2postgresqlfw.png)
 
 5. Now add **Firewall Rule**. Select **Add current client IP address**, this will add the client IP by creating a new rule. Then **save** the changes.
 
