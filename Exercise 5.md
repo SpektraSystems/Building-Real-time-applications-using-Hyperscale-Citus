@@ -4,7 +4,7 @@ As your data scales we want to keep performance up. We will ensure our dashboard
 
 To run this roll-up more easily, we're going to put it into a plpgsql function.
 
-In order to populate http_request_1min we’re going to periodically run an INSERT INTO SELECT ON CONFLICT DO UPDATE. The ON CONFLICT DO UPDATE handles the late data use case i.e if your data arrives late to the database and there is already a row/aggregate for that minute then instead of inserting a new row, it would update that row  by taking into account the aggregates from late rows.
+In order to populate http_request_1min we’re going to periodically run an **INSERT INTO SELECT ON CONFLICT DO UPDATE**. The **ON CONFLICT DO UPDATE** handles the late data use case i.e if your data arrives late to the database and there is already a row/aggregate for that minute then instead of inserting a new row, it would update that row  by taking into account the aggregates from late rows.
  
 The above is possible because the tables are co-located. The following function wraps the rollup query up for convenience.
 
