@@ -57,19 +57,19 @@ CHECK (minute = date_trunc('minute', minute))
 ```
 
 
-<kbd>![](images/query1run.png)</kbd>
+<kbd>![](images/queryrun1.png)</kbd>
 
 
 3. On running the query a message will be displayed: **Commands completed successfully**.
 
 
-<kbd>![](images/query1msg.png)</kbd>
+<kbd>![](images/querymsg1.png)</kbd>
 
 
 4. Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. 
 
 
-<kbd>![](images/query1displaytable.png)</kbd>
+<kbd>![](images/query1table.png)</kbd>
 
 
 
