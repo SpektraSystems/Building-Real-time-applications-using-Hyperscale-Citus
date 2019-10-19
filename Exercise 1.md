@@ -18,8 +18,12 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 <kbd>![](images/azpostgresql1.png)</kbd>
 
 
-4. On the left side navigation of the overview pane under **Security** click **Networking**. Put **Allow Azure Service** to **YES** and **save** the changes.
+4. On the left side navigation of the overview pane under **Security** click **Networking** and put **Allow Azure Service** to **YES**.
 
 <kbd>![](images/2postgresqlfw.png)</kbd>
 
-5. Click **Next** on the bottom right of this page.
+5. Then add **Firewall Rule**. Select **Add current client IP address**, this will add the client IP as a rule and **save** the changes.
+
+![](images/firewallip1.png)
+
+6. Click **Next** on the bottom right of this page.
