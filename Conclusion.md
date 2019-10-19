@@ -1,4 +1,4 @@
-## Dashboarding on Hyperscale (Citus) using Power BI
+## **Dashboarding on Hyperscale (Citus) using Power BI**
 
 ### Conclusion
 
