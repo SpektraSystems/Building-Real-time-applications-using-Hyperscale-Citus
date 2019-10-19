@@ -83,7 +83,7 @@ FROM http_request_1min
 WHERE ingest_time > date_trunc('minute', now()) - interval '5 minutes' LIMIT 15;
 ```
 
-<kbd>![](images/query8rollup2.png)</kbd>
+<kbd>![](images/1lab6.png)</kbd>
 
 HLLs aren’t just faster, they let you do things you couldn’t previously. Say we did our rollups, but instead of using HLLs we saved the exact unique counts. This works fine, but you can’t answer queries such as “how many distinct sessions were there during this one-week period in the past we’ve thrown away the raw data for?”.
 With HLLs, this is easy. You can compute distinct IP counts over a time period with the following query
@@ -170,9 +170,9 @@ The INSERT INTO statement now has **top_urls_1000** and the SELECT now has **top
 SELECT rollup_http_request(); 
 ```
 
-<kbd>![](images/rollup10.png)</kbd>
+<kbd>![](images/5lab6.png)</kbd>
 
-4.	Dashboard query to get the top urls per minute over the last 5 minutes. If you observe we query the top_urls_1000 column using the topn() function to get only the top most url per minute.
+4.	Dashboard query to get the top urls per minute over the last 5 minutes. If you observe we query the top_urls_1000 column using the topn() function to get only the top most url per minute. 
 
 ```
 SELECT site_id, ingest_time as minute, request_count, success_count,
@@ -183,7 +183,11 @@ FROM http_request_1min
 WHERE ingest_time > date_trunc('minute', now()) - interval '5 minutes' LIMIT 15;
 ```
 
-<kbd>![](images/query9rollup1.png)</kbd>
+![](images/2lab6.png)
+
+You can scroll and check the whole table as shown below:
+
+<kbd>![](images/3lab6.png)</kbd>
 
 5. In the Psql console copy and paste the following to create a report for the top 10 urls in the last 5 minutes. If you observe the query uses topn_union_agg to aggregate the minutely topn values over the last 5 minutes.
 
@@ -193,6 +197,6 @@ SELECT topn_union_agg(http_request_1min.top_urls_1000) topn_agg
 FROM http_request_1min WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval) a; 
 ```
 
-<kbd>![](images/query9rollup1.png)</kbd>
+<kbd>![](images/4lab6.png)</kbd>
 
 5. Click **Next** on the bottom right of this page.
