@@ -72,6 +72,6 @@ ORDER BY minute ASC
 LIMIT 15;
 ```
 
-<kbd>![](images/query4.png)</kbd>
+<kbd>![](images/dashboard1.png)</kbd>
 
 5. Click **Next** on the bottom right of this page.
