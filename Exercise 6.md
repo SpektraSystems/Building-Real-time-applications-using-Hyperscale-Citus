@@ -60,7 +60,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-<kbd>![](images/query8rollup.png)</kbd>
+<kbd>![](images/lab6.png)</kbd>
 
 3.	Then open a **New Query** console and paste the following to execute the updated function.
 
