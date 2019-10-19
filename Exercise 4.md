@@ -1,4 +1,4 @@
-## Lab 4: Generate data
+## **Lab 4: Generate data**
 
 The system is ready to accept data and serve queries now! The next set of instructions will keep the following loop running in a Psql console in the background while you continue with the other commands in this article. It generates fake data every second or two.
  
