@@ -1,6 +1,6 @@
 ## Lab 1: Getting started with Hyperscale (Citus)
 
-For a successfule connection into Hyperscale (Citus) on Azure Database for PostgreSQL, we need to enable firewall services.
+For a successful connection into Hyperscale (Citus) on Azure Database for PostgreSQL, we need to enable firewall services.
 
 ### Task 1: Configure server-level firewall service
 
@@ -22,7 +22,7 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 
 <kbd>![](images/2postgresqlfw.png)</kbd>
 
-5. Then add **Firewall Rule**. Select **Add current client IP address**, this will add the client IP as a rule and **save** the changes.
+5. Now add **Firewall Rule**. Select **Add current client IP address**, this will add the client IP by creating a new rule. Then **save** the changes.
 
 ![](images/firewallip1.png)
 
