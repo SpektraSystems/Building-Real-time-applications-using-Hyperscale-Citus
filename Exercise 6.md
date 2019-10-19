@@ -9,7 +9,7 @@ Now we’re ready to track IP addresses in our rollup with HLL. First add a colu
 
 ### Task 1: Track IP addresses in Rollup
 
- 1. Open a **New Query** console and paste the following:
+ 1. Open a **New Query** console and paste the following. You will get a message that **Commands completed successfully**.
 
 ```
 ALTER TABLE http_request_1min ADD COLUMN distinct_ip_addresses hll; 
@@ -110,7 +110,7 @@ The TopN extension becomes useful when you want to materialize top values, incre
 For **Non-Hyperscale (Citus)**  first you must install the TopN extension and enable it. You would run the Psql command **CREATE EXTENSION topn**; on all nodes in this case. This is not necessary on Azure as Hyperscale (Citus) already comes with TopN installed, along with other useful Extensions.
 
  
-1. Open a **New Query** console and paste the following to add a new JSONB column top_urls_1000 to our rollup table. This stores the top 1000 urls for the minute and the site_id in the rollup table.
+1. Open a **New Query** console and paste the following to add a new JSONB column top_urls_1000 to our rollup table. This stores the top 1000 urls for the minute and the site_id in the rollup table. You will get a message that **Commands completed successfully**.
 
 ```
 ALTER TABLE http_request_1min ADD COLUMN top_urls_1000 JSONB;
@@ -162,7 +162,6 @@ $$ LANGUAGE plpgsql;
 <kbd>![](images/query9rollup.png)</kbd>
 
 The INSERT INTO statement now has **top_urls_1000** and the SELECT now has **topn_add_agg(url::text) AS top_urls_1000** added into the rollup_http_request function.
-
 
 3. In the Psql console copy and paste the following to execute the updated function.
 
