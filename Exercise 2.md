@@ -1,4 +1,4 @@
-## Lab 2: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL
+## **Lab 2: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL**
 
 Here we will start wroking with Azure Data Studio by connecting our database to it.
 
