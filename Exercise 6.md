@@ -99,7 +99,7 @@ LIMIT 15;
 
 <kbd>![](images/query8rollup3.png)</kbd>
 
-## Task 2: TopN for your Postgres Database
+### Task 2: TopN for your Postgres Database
 
 To find the top occurring item you generally need to count through all the records. Counting the clicks in your web app, the number of times you’ve listened to song, or the number of downloads of your project. It is all about counting. Counting, sorting, and limiting the list in Postgres is straightforward, and this works great on smaller sets of data. What if there are thousands of events? Machines these days are pretty fast so this isn’t much of a problem. Millions is even acceptable. Billions? That may take a bit longer. 
 
