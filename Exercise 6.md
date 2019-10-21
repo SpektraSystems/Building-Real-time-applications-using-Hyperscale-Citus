@@ -17,7 +17,6 @@ ALTER TABLE http_request_1min ADD COLUMN distinct_ip_addresses hll;
 
 <kbd>![](images/query7rollup.png)</kbd>
 
- 
 2. Next we will use our custom aggregation to populate the column. Open a **New Query** console and paste the following to add it to the query of our rollup function.
 
 ```
@@ -70,7 +69,6 @@ SELECT rollup_http_request();
 
 <kbd>![](images/query8rollup1.png)</kbd>
 
- 
 4. Dashboard queries are a little more complicated, you have to read out the distinct number of IP addresses by calling the hll_cardinality function.
 
 5. For this open a **New Query** console and paste the following to create a report using the hll_cardinality function 
@@ -108,7 +106,6 @@ To solve the above problem you have the topN extension. TopN is an open source P
 The TopN extension becomes useful when you want to materialize top values, incrementally update these top values, and/or merge top values from different time intervals. you can think of TopN as hll’s cousin.
 
 For **Non-Hyperscale (Citus)**  first you must install the TopN extension and enable it. You would run the Psql command **CREATE EXTENSION topn**; on all nodes in this case. This is not necessary on Azure as Hyperscale (Citus) already comes with TopN installed, along with other useful Extensions.
-
  
 1. Open a **New Query** console and paste the following to add a new JSONB column top_urls_1000 to our rollup table. This stores the top 1000 urls for the minute and the site_id in the rollup table. You will get a message that **Commands completed successfully**.
 
