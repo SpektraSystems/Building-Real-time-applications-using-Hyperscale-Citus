@@ -53,7 +53,6 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/1rollup.png)</kbd>
 
-
 2. In the Psql console copy and paste the following to execute the rollup function.
 ```
 SELECT rollup_http_request(); 
@@ -61,7 +60,7 @@ SELECT rollup_http_request();
 
 <kbd>![](images/query5rollup1.png)</kbd>
 
-Note: The above function should be called every minute. You could do this by using a PostgreSQL extension called pg_cron which allows you to schedule recurring queries directly from the database. 
+> Note: The above function should be called every minute. You could do this by using a PostgreSQL extension called pg_cron which allows you to schedule recurring queries directly from the database. 
 
 3. Here the above rollup function can be called once every minute by the below command. Replace the above command with the following:
 
@@ -70,7 +69,6 @@ SELECT cron.schedule('* * * * *','SELECT rollup_http_request();');
 ```
 
 <kbd>![](images/schedule.png)</kbd>
-
 
 4. Open a **New Query** console and paste the following to run the query on the 1 minute aggregated table.
 
