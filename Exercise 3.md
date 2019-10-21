@@ -56,22 +56,15 @@ CHECK (minute = date_trunc('minute', minute))
 );
 ```
 
-
 <kbd>![](images/queryrun1.png)</kbd>
-
 
 3. On running the query a message will be displayed: **Commands completed successfully**.
 
-
 <kbd>![](images/querymsg1.png)</kbd>
-
 
 4. Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
 
-
 <kbd>![](images/query1table.png)</kbd>
-
-
 
 ### Shard tables across nodes
 
@@ -85,7 +78,6 @@ SELECT create_distributed_table('http_request_1min', 'site_id');
 ```
 
 <kbd>![](images/query2.png)</kbd>
-
 
 The above commands create shards for both the tables across worker nodes. Shards are nothing but PostgreSQL tables that hold a set of sites. All the data for a particular site for a table will live in the same shard.
 
