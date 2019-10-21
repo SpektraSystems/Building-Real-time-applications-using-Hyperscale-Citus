@@ -32,8 +32,6 @@ END $$;
 
 <kbd>![](images/loadsql.png)</kbd>
 
-
-
 ### Dashboard query
 
 The Hyperscale (Citus) hosting option allows multiple nodes to process queries in parallel for speed. For instance, the database calculates aggregates like SUM and COUNT on worker nodes, and combines the results into a final answer.
@@ -54,7 +52,6 @@ Select Count(*) from http_request;
 
 <kbd>![](images/query3countcheck1.png)</kbd>
 
- 
 4. We will run this query to count web requests per minute along with a few statistics. For this open **New Query** console, then paste the following to see average response time for sites.
 
 ```
