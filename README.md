@@ -5,3 +5,6 @@ For example, you could be a cloud services provider helping other businesses mon
 
 Alternatively, maybe you’re building an advertising network and want to show clients click rates on their campaigns. In this example latency is also critical, raw data volume is also high, and both historical and live data are important.
 For this experience we will instruct you on how to deal with a number of real-time and scaling issues using Hyperscale (Citus) on Azure Database for PostgreSQL. 
+
+
+Click **Next** on the bottom right of this page.
