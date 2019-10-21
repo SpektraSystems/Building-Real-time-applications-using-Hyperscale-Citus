@@ -6,9 +6,7 @@ For a successful connection into Hyperscale (Citus) on Azure Database for Postgr
 
 Follow the instructions given below to allow yourself access to the Hyperscale (Citus) server group.
  
-1. Navigate to **Azure Portal**.
-
-2. In the upper left of the Azure Portal go to **Home**, theb locate **Azure services** and select **Azure Database for PostgreSQL servers** on homepage.
+1. In the **Azure Portal** go to **Home**, then locate **Azure services** and select **Azure Database for PostgreSQL servers** on homepage.
 
 ![](images/azpostgresql.png)
 
