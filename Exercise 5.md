@@ -82,6 +82,16 @@ LIMIT 15;
 
 <kbd>![](images/lab5.png)</kbd>
 
+5. .Open a **New Query** and paste the following. We will run this query to count web requests per minute along with a few statistics. But now we are querying the rollup table instead of raw table.
+
+```
+SELECT site_id, ingest_time as minute, request_count,
+    success_count, error_count, sum_response_time_msec/request_count as average_response_time_msec
+FROM http_request_1min
+WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
+LIMIT 15;
+```
+
 ### Expiring Old Data
 
 The rollups make queries faster, but we still need to expire old data to avoid unbounded storage costs. Simply decide how long you’d like to keep data for each granularity, and use standard queries to delete expired data. 
