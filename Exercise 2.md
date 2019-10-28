@@ -17,7 +17,8 @@ Now we will connect to PostgreSQL Database through Azure Data Studio.
 ![](images/azdatastudio.png)
 
 4.Use following configurations for **Connection Details**:
-* Connection type: select **PostgreSQL** from the dropdown
+
+* Connection type: select **PostgreSQL** from the dropdown.
 
 Go to **Environment details** tab and copy following values from there:
 
