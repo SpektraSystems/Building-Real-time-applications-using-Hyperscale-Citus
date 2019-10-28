@@ -30,7 +30,11 @@ Go to **Environment details** tab and copy following values from there:
 
 ![](images/newconnection2.png)
 
-5.**Connection details** should look similar to the below, then select **Connect**:
+5.Go to **Advanced properties**. For **SSL Mode** select **require** from the dropdown and select **Ok**.
+
+![](images/sslrequired.png)
+
+5.Now **Connection details** should look similar to the below, then select **Connect**:
 
 ![](images/newconnection1.png)
 
