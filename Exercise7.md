@@ -11,7 +11,7 @@ In this exercise, you will connect to your PostgreSQL database cluster in Power 
 ![](images/powerbi.png)
 
 2.Then input the following credentials for database connection:
-* **server (host)name:** sai-test-5-c.postgres.database.azure.com
+* **server (host)name:** srvxxxxx.postgres.database.azure.com (copy your server name from **Environment details** tab)
 * **username:** citus
 * **password:** test123!
 
