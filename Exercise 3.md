@@ -4,11 +4,11 @@ The data we’re dealing with is an immutable stream of log data that we will be
 On this page we will create a simple schema for ingesting HTTP event data, shard it, create load and then query.
 Let's create the tables for http requests, per-minute aggregates and a table that maintains the position of our last rollup.
 
-1. Expand the server group **postgresxxxxx**, then the server and under server expand **Database**. Right click on the database **citus** and select **New Query**.
+1.Expand the server group **postgresxxxxx**, then the server and under server expand **Database**. Right click on the database **citus** and select **New Query**.
 
 <kbd>![](images/1query.png)</kbd>
 
-2. In the console copy and paste the following to create the tables.
+2.In the console copy and paste the following to create the tables.
 
 ```
 -- this is run on the coordinator
@@ -58,11 +58,11 @@ CHECK (minute = date_trunc('minute', minute))
 
 <kbd>![](images/queryrun1.png)</kbd>
 
-3. On running the query a message will be displayed: **Commands completed successfully**.
+3.On running the query a message will be displayed: **Commands completed successfully**.
 
 <kbd>![](images/querymsg1.png)</kbd>
 
-4. Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
+4.Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
 
 <kbd>![](images/query1table.png)</kbd>
 
@@ -70,7 +70,7 @@ CHECK (minute = date_trunc('minute', minute))
 
 A hyperscale deployment stores table rows on different nodes based on the value of a user-designated column. This "distribution column" marks how data is sharded across nodes. Let's set the distribution column to be site_id, the shard key.
 
-5. Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. 
+5.Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. 
 
 ```
 SELECT create_distributed_table('http_request', 'site_id'); 
@@ -83,4 +83,4 @@ The above commands create shards for both the tables across worker nodes. Shards
 
 Notice that both tables are sharded on site_id. Hence there’s a 1-to-1 correspondence between http_request shards and http_request_1min shards i.e shards of both tables holding same set of sites are on same worker nodes. This is called colocation. Colocation makes queries, such as joins, faster and our rollups possible. In the following image you will see an example of colocation where for both tables site_id 1 and 3 are on worker 1 while site_id 2 and 4 are on Worker 2.
 
-6 Click **Next** on the bottom right of this page.
+6.Click **Next** on the bottom right of this page.
