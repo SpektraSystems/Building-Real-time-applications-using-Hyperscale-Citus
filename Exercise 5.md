@@ -93,10 +93,9 @@ DELETE FROM http_request WHERE ingest_time < now() - interval '1 day';
 DELETE FROM http_request_1min WHERE ingest_time < now() - interval '1 month';
 ``` 
 
-- In production you could wrap these queries in a function and call it every minute in a cron job.
-Data expiration can go even faster by using latest time partitioning feature in PostgreSQL in addition to sharding with Hyperscale (Citus). You could also use extensions like pg_partman to automate time partition creation and maintenance. We already did this for the raw (http_request) table.
+-  In production you could wrap these queries in a function and call it every minute in a cron job. Data expiration can go even faster by using latest time partitioning feature in PostgreSQL in addition to sharding with Hyperscale (Citus).
 
-- As an example, suppose the retention for the raw data is 3 days, you could DROP the partition(s) that are earlier than 3 days. In the below query, replace YYYY_MM_DD with the date that represents the 4th day prior to today. For example if today is 2019-10-09, YYYY_MM_DD would be 2019-10-05.
+- You could also use extensions like pg_partman to automate time partition creation and maintenance. This helps you to directly drop partitions. This approach is more optimal than the DELETE command. We already did this for the raw (http_request) table. As an example, suppose the retention for the raw data is 3 days, you could DROP the partition(s) that are earlier than 3 days. In the below query, replace YYYY_MM_DD with the date that represents the 4th day prior to today. For example if today is 2019-10-09, YYYY_MM_DD would be 2019-10-05.
 
 ```
 DROP TABLE http_request_pYYYY_MM_DD;
