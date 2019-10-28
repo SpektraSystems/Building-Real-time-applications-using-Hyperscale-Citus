@@ -2,7 +2,7 @@
 
 The system is ready to accept data and serve queries now! The next set of instructions will keep the following loop running in a Psql console in the background while you continue with the other commands in this article. It generates fake data every second or two.
  
-1. Open **New Query** console and paste the following query to create the http_request load generator.
+1.Open **New Query** console and paste the following query to create the http_request load generator.
 
 ```
 -- loop continuously writing records every 1/4 second
@@ -36,7 +36,7 @@ END $$;
 
 The Hyperscale (Citus) hosting option allows multiple nodes to process queries in parallel for speed. For instance, the database calculates aggregates like SUM and COUNT on worker nodes, and combines the results into a final answer.
 
-2. Open **New Query** console and enter the following command to verify the real-time load is being generated from the previous step.
+2.Open **New Query** console and enter the following command to verify the real-time load is being generated from the previous step.
 
 ```
 Select Count(*) from http_request; 
@@ -44,7 +44,7 @@ Select Count(*) from http_request;
 
 <kbd>![](images/query3countcheck.png)</kbd>
 
-3. In the console enter the select command once more to see that the count is increasing. You will observe increase in the count.
+3.In the console enter the select command once more to see that the count is increasing. You will observe increase in the count.
 
 ```
 Select Count(*) from http_request; 
@@ -52,7 +52,7 @@ Select Count(*) from http_request;
 
 <kbd>![](images/query3countcheck1.png)</kbd>
 
-4. We will run this query to count web requests per minute along with a few statistics. For this open **New Query** console, then paste the following to see average response time for sites.
+4.We will run this query to count web requests per minute along with a few statistics. For this open **New Query** console, then paste the following to see average response time for sites.
 
 ```
 SELECT
@@ -71,4 +71,4 @@ LIMIT 15;
 
 <kbd>![](images/dashboard1.png)</kbd>
 
-5. Click **Next** on the bottom right of this page.
+5.Click **Next** on the bottom right of this page.
