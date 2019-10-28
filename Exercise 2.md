@@ -17,14 +17,14 @@ Now we will connect to PostgreSQL Database through Azure Data Studio.
 ![](images/azdatastudio.png)
 
 4.Use following configurations for **Connection Details**:
-* Connection type: select **PostgreSQL** from the dropdown
+- Connection type: select **PostgreSQL** from the dropdown
 
 Go to **Environment details** tab and copy following values from there:
-* Server Name: **srvxxxxx.postgres.database.azure.com** ()
-* Username: **citus**
-* Password: **Password.1!!**
-* Database Name: **citus**
-* Server Group: For server group name, select **Add server group** from the dropdown and enter your server group name i.e., **postgresxxxxx** as shown below:
+- Server Name: **srvxxxxx.postgres.database.azure.com** ()
+- Username: **citus**
+- Password: **Password.1!!**
+- Database Name: **citus**
+- Server Group: For server group name, select **Add server group** from the dropdown and enter your server group name i.e., **postgresxxxxx** as shown below:
 
 ![](images/newconnection2.png)
 
