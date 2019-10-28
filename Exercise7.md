@@ -45,4 +45,4 @@ Then select **Connect**.
 
 ![](images/powerbi9.png)
 
-
+11.Click **Next** on the bottom right of this page.
