@@ -20,6 +20,7 @@ Now we will connect to PostgreSQL Database through Azure Data Studio.
 * Connection type: select **PostgreSQL** from the dropdown
 
 Go to **Environment details** tab and copy following values from there:
+
 * Server Name: **srvxxxxx.postgres.database.azure.com** ()
 * Username: **citus**
 * Password: **Password.1!!**
