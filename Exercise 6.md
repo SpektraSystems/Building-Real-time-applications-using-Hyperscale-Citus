@@ -9,7 +9,7 @@ Now we’re ready to track IP addresses in our rollup with HLL. First add a colu
 
 ### Task 1: Track IP addresses in Rollup
 
- 1.Open a **New Query** console and paste the following. You will get a message that **Commands completed successfully**.
+ 1.Open a **New Query** and paste the following. You will get a message that **Commands completed successfully**.
 
 ```
 ALTER TABLE http_request_1min ADD COLUMN distinct_ip_addresses hll; 
@@ -17,7 +17,7 @@ ALTER TABLE http_request_1min ADD COLUMN distinct_ip_addresses hll;
 
 <kbd>![](images/query7rollup.png)</kbd>
 
-2.Next we will use our custom aggregation to populate the column. Open a **New Query** console and paste the following to add it to the query of our rollup function.
+2.Next we will use our custom aggregation to populate the column. Open a **New Query** and paste the following to add it to the query of our rollup function.
 
 ```
 -- function to do the rollup
@@ -61,7 +61,7 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/lab6.png)</kbd>
 
-3.Then open a **New Query** console and paste the following to execute the updated function.
+3.Then open a **New Query** and paste the following to execute the updated function.
 
 ```
 SELECT rollup_http_request(); 
@@ -71,7 +71,7 @@ SELECT rollup_http_request();
 
 4.Dashboard queries are a little more complicated, you have to read out the distinct number of IP addresses by calling the hll_cardinality function.
 
-5.For this open a **New Query** console and paste the following to create a report using the hll_cardinality function 
+5.For this open a **New Query** and paste the following to create a report using the hll_cardinality function 
 
 ```
 SELECT site_id, ingest_time as minute, request_count, success_count, 
@@ -86,7 +86,7 @@ WHERE ingest_time > date_trunc('minute', now()) - interval '5 minutes' LIMIT 15;
 HLLs aren’t just faster, they let you do things you couldn’t previously. Say we did our rollups, but instead of using HLLs we saved the exact unique counts. This works fine, but you can’t answer queries such as “how many distinct sessions were there during this one-week period in the past we’ve thrown away the raw data for?”.
 With HLLs, this is easy. You can compute distinct IP counts over a time period with the following query
  
-6.Open a **New Query** console and paste the following to compute distinct IP counts over time.
+6.Open a **New Query** and paste the following to compute distinct IP counts over time.
 
 ```
 SELECT hll_cardinality(hll_union_agg(distinct_ip_addresses))::bigint
@@ -107,13 +107,13 @@ The TopN extension becomes useful when you want to materialize top values, incre
 
 For **Non-Hyperscale (Citus)**  first you must install the TopN extension and enable it. You would run the Psql command **CREATE EXTENSION topn**; on all nodes in this case. This is not necessary on Azure as Hyperscale (Citus) already comes with TopN installed, along with other useful Extensions.
  
-1.Open a **New Query** console and paste the following to add a new JSONB column top_urls_1000 to our rollup table. This stores the top 1000 urls for the minute and the site_id in the rollup table. You will get a message that **Commands completed successfully**.
+1.Open a **New Query** and paste the following to add a new JSONB column top_urls_1000 to our rollup table. This stores the top 1000 urls for the minute and the site_id in the rollup table. You will get a message that **Commands completed successfully**.
 
 ```
 ALTER TABLE http_request_1min ADD COLUMN top_urls_1000 JSONB;
 ```
 
-2.Now open a **New Query** console and paste the following to add it to the query of our rollup function.
+2.Now open a **New Query** and paste the following to add it to the query of our rollup function.
 
 ```
 CREATE OR REPLACE FUNCTION rollup_http_request() RETURNS void AS $$
@@ -160,7 +160,7 @@ $$ LANGUAGE plpgsql;
 
 The **INSERT INTO** statement now has **distinct_ip_addresses** and the **SELECT** now has **hll_add_agg(hll_hash_text(ip_address))** AS **distinct_ip_addresses** added into the rollup_http_request function. **hll_add_agg** populate the hll object with the distinct ip addresses.
 
-3.In the Psql console copy and paste the following to execute the updated function.
+3.Open **New Query**, then copy and paste the following to execute the updated function.
 
 ```
 SELECT rollup_http_request(); 
@@ -185,7 +185,7 @@ You can scroll and check the whole table as shown below:
 
 <kbd>![](images/3lab6.png)</kbd>
 
-5.In the Psql console copy and paste the following to create a report for the top 10 urls in the last 5 minutes. If you observe the query uses topn_union_agg to aggregate the minutely topn values over the last 5 minutes.
+5.Open **New Query**, then copy and paste the following to create a report for the top 10 urls in the last 5 minutes. If you observe the query uses topn_union_agg to aggregate the minutely topn values over the last 5 minutes.
 
 ```
 SELECT (topn(topn_agg,10)).item as top_urls from (
