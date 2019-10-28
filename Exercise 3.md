@@ -83,4 +83,6 @@ The above commands create shards for both the tables across worker nodes. Shards
 
 Notice that both tables are sharded on site_id. Hence there’s a 1-to-1 correspondence between http_request shards and http_request_1min shards i.e shards of both tables holding same set of sites are on same worker nodes. This is called colocation. Colocation makes queries, such as joins, faster and our rollups possible. In the following image you will see an example of colocation where for both tables site_id 1 and 3 are on worker 1 while site_id 2 and 4 are on Worker 2.
 
+<kbd>![](images/colocation.png)
+
 6.Click **Next** on the bottom right of this page.
