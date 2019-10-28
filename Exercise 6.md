@@ -158,7 +158,7 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/query9rollup.png)</kbd>
 
-The **INSERT INTO** statement now has distinct_ip_addresses and the SELECT now has hll_add_agg(hll_hash_text(ip_address)) AS distinct_ip_addresses added into the rollup_http_request function. hll_add_agg populate the hll object with the distinct ip addresses.
+The **INSERT INTO** statement now has **distinct_ip_addresses** and the **SELECT** now has **hll_add_agg(hll_hash_text(ip_address))** AS **distinct_ip_addresses** added into the rollup_http_request function. **hll_add_agg** populate the hll object with the distinct ip addresses.
 
 3.In the Psql console copy and paste the following to execute the updated function.
 
