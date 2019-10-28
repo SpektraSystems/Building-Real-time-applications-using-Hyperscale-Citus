@@ -9,7 +9,7 @@ In order to populate http_request_1min we’re going to periodically run an **IN
 The above is possible because the tables are co-located. The following function wraps the rollup query up for convenience.
 
 
-1. Open a **New Query** console and paste the following to create the rollup_http_request function.
+1.Open a **New Query** console and paste the following to create the rollup_http_request function.
 
 ```
 -- initialize to a time long ago
@@ -53,7 +53,7 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/1rollup.png)</kbd>
 
-2. In the Psql console copy and paste the following to execute the rollup function.
+2.In the Psql console copy and paste the following to execute the rollup function.
 ```
 SELECT rollup_http_request(); 
 ```
@@ -62,7 +62,7 @@ SELECT rollup_http_request();
 
 > Note: The above function should be called every minute. You could do this by using a PostgreSQL extension called pg_cron which allows you to schedule recurring queries directly from the database. 
 
-3. Here the above rollup function can be called once every minute by the below command. Replace the above command with the following:
+3.Here the above rollup function can be called once every minute by the below command. Replace the above command with the following:
 
 ```
 SELECT cron.schedule('* * * * *','SELECT rollup_http_request();'); 
@@ -70,7 +70,7 @@ SELECT cron.schedule('* * * * *','SELECT rollup_http_request();');
 
 <kbd>![](images/schedule.png)</kbd>
 
-4. Open a **New Query** console and paste the following to run the query on the 1 minute aggregated table.
+4.Open a **New Query** console and paste the following to run the query on the 1 minute aggregated table.
 
 ```
 SELECT site_id, ingest_time as minute, request_count,
@@ -106,4 +106,4 @@ DROP TABLE http_request_pYYYY_MM_DD;
 Those are the basics! We provided an architecture that ingests HTTP events and then rolls up these events into their pre-aggregated form. This way, you can both store raw events and also power your analytical dashboards with subsecond queries.
 The next sections extend upon the basic architecture and show you how to resolve questions which often appear.
 
-5. Click **Next** on the bottom right of this page.
+5.Click **Next** on the bottom right of this page.
