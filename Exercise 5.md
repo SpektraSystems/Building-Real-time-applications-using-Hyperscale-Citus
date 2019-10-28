@@ -9,7 +9,7 @@ In order to populate http_request_1min we’re going to periodically run an **IN
 The above is possible because the tables are co-located. The following function wraps the rollup query up for convenience.
 
 
-1.Open a **New Query** console and paste the following to create the rollup_http_request function.
+1.Open a **New Query** and paste the following to create the rollup_http_request function.
 
 ```
 -- initialize to a time long ago
@@ -53,7 +53,7 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/1rollup.png)</kbd>
 
-2.In the Psql console copy and paste the following to execute the rollup function.
+2.Open a **New Query**, then copy and paste the following to execute the rollup function.
 ```
 SELECT rollup_http_request(); 
 ```
@@ -70,7 +70,7 @@ SELECT cron.schedule('* * * * *','SELECT rollup_http_request();');
 
 <kbd>![](images/schedule.png)</kbd>
 
-4.Open a **New Query** console and paste the following to run the query on the 1 minute aggregated table.
+4.Open a **New Query** and paste the following to run the query on the 1 minute aggregated table.
 
 ```
 SELECT site_id, ingest_time as minute, request_count,
