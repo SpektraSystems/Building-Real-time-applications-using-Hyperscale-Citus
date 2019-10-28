@@ -34,12 +34,12 @@ Go to **Environment details** tab and copy following values from there:
 
 ![](images/sslrequired.png)
 
-5.Now **Connection details** should look similar to the below, then select **Connect**:
+6.Now **Connection details** should look similar to the below, then select **Connect**:
 
 ![](images/newconnection1.png)
 
-6.After getting connected, you can find your **PostgreSQL Database** under **Server** pane as shown below:
+7.After getting connected, you can find your **PostgreSQL Database** under **Server** pane as shown below:
 
 ![](images/newconnection3.png)
 
-7.Click **Next** on the bottom right of this page.
+8.Click **Next** on the bottom right of this page.
