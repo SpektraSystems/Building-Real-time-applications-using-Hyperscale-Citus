@@ -31,11 +31,11 @@ Then select **Connect**.
 
 ![](images/powerbi7.png)
 
-6.Use your credentials which you have to copy from the **Environment detials** tab. Copy username and password and paste for signing in. You will get a popup sayinh **Stay signed in?**, click **Yes** for this.
+6.Use your credentials which you have to copy from the **Environment detials** tab. Copy username and password and paste for signing in. You will get a popup saying **Stay signed in?**, click **Yes** for this.
 
 7.Now select **Start** by agreeing to Microsoft terms and conditions. You can skip optional steps after signing in, such as you will get a message over your screen to **Invite more people**. You can simply skip this step. 
 
-8.You will be now directed to **Microsoft Office Home**. Select **PowerBI** there, you are successfully signed in.
+8.You will be now directed to **Microsoft Office Home**. Select **PowerBI** there, you will see that you are successfully signed in.
 
 9.Now navigate back to the PowerBI file and enter your username in the sign in block there.
 
