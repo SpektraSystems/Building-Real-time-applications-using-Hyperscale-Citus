@@ -82,7 +82,7 @@ LIMIT 15;
 
 <kbd>![](images/lab5.png)</kbd>
 
-5. .Open a **New Query** and paste the following. We will run this query to count web requests per minute along with a few statistics. But now we are querying the rollup table instead of raw table.
+5.Open a **New Query** and paste the following. We will run this query to count web requests per minute.
 
 ```
 SELECT site_id, ingest_time as minute, request_count,
