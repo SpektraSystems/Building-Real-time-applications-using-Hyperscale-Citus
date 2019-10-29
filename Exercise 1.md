@@ -15,12 +15,17 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 
 ![](images/azpostgresql1.png)
 
-3.On the overview pane under **Security** click **Networking** and put **Allow Azure Service** to **YES**.
+3.We pre-provisioned a basic production grade Hyperscale (Citus) cluster with 1 coordinator with 4 vCores and 16GB RAM and 2 workers with each 2 vCores and 16GB RAM for this lab. You can review the cluster details in Azure Portal. 
+
+![](images/azpostgresqlclusterinfo.png)
+
+
+4.On the overview pane under **Security** click **Networking** and put **Allow Azure Service** to **YES**.
 
 ![](images/2postgresqlfw.png)
 
-4.Now add **Firewall Rule**. Select **Add current client IP address**, this will add the client IP by creating a new rule. Then **save** the changes.
+5.Now add **Firewall Rule**. Select **Add current client IP address**, this will add the client IP by creating a new rule. Then **save** the changes.
 
 ![](images/firewallip1.png)
 
-5.Click **Next** on the bottom right of this page.
+6.Click **Next** on the bottom right of this page.
