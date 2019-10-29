@@ -6,9 +6,9 @@ Here we will start working with Azure Data Studio by connecting our database to 
 
 Now we will connect to PostgreSQL Database through Azure Data Studio.
 
-1.Open **Azure Data Studio** provided on the dektop. Select **No/Cancel** to remove pop-ups.
+1.Open **Azure Data Studio** provided on the dektop. Select **No/Cancel** on any popup's at startup.
 
-2.Then on the left click on **Extension** icon, then in the search bar enter **PostgreSQL** and select **Install**. After this restart the Azure Data Studio.
+2.Then on the left click on **Extension** icon, then in the search bar enter **PostgreSQL** and select **Install**. After sucessful installation close and re-open the Azure Data Studio.
 
 ![](images/postext.png)
 
@@ -26,11 +26,11 @@ Go to **Environment details** tab and copy following values from there:
 * Username: **citus**
 * Password: **Password.1!!**
 * Database Name: **citus**
-* Server Group: For server group name, select **Add server group** from the dropdown and enter your server group name i.e., **postgresxxxxx** as shown below:
+* Server Group: For server group name, select **Add server group** from the dropdown, Copy your server group name from **Environment details** tab and enter as shown below:
 
 ![](images/newconnection2.png)
 
-5.Go to **Advanced properties**. For **SSL Mode** select **require** from the dropdown and select **Ok**.
+5.Click on **Advanced** and configure **SSL Mode** to **require** from the dropdown and select **OK**.
 
 ![](images/sslrequired.png)
 
