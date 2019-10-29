@@ -1,0 +1,48 @@
+﻿[
+  {
+    "Name": "Analyzing real-time data with Azure Database for PostgreSQL",
+    "Language": "English",
+    "Files": [
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus-/master/README.md",
+        "Order": 1
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus-/master/Getting%20Started.md",
+        "Order": 2
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus/master/Exercise1.md",
+        "Order": 3
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus/master/Exercise2.md",
+        "Order": 4
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus/master/Exercise3.md",
+        "Order": 5
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus/master/Exercise4.md",
+        "Order": 6
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus/master/Exercise5.md",
+        "Order": 7
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus/master/Exercise6.md",
+        "Order": 8
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus/master/Exercise7.md",
+        "Order": 9
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/Building-Real-time-applications-using-Hyperscale-Citus/master/Conclusion.md",
+        "Order": 10
+      }
+    ]
+  }
+]
