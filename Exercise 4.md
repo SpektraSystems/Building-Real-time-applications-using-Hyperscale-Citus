@@ -71,4 +71,8 @@ LIMIT 15;
 
 <kbd>![](images/dashboard1.png)</kbd>
 
+5.The setup described above works but has drawbacks.
+- Your HTTP operational analytics dashboard must go over each row every time it needs to generate a graph. For example, if your clients are interested in trends over the past year, your queries will aggregate every row for the past year from scratch.
+- Your storage costs will grow proportionally with the ingest rate and the length of the queryable history. In practice, you may want to keep raw events for a shorter period of time (one month) and look at historical graphs over a longer time period (years).
+
 5.Click **Next** on the bottom right of this page.
