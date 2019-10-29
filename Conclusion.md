@@ -22,4 +22,3 @@ In this tutorial, you used **Hyperscale (Citus)** on **Azure Database for Postgr
 * GitHub - HLL HyperLogLog
 * When to use unstructured datatypes in Postgres–Hstore vs. JSON vs. JSONB
 
-Click **Feedback** to let us know how great this experience has been
