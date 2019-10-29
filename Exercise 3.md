@@ -58,7 +58,7 @@ CHECK (minute = date_trunc('minute', minute))
 
 <kbd>![](images/queryrun1.png)</kbd>
 
-3.On running the query a message will be displayed: **Commands completed successfully**.
+3.Once query completes execution, you should see **Commands completed successfully** under **Messages** tab. 
 
 <kbd>![](images/querymsg1.png)</kbd>
 
