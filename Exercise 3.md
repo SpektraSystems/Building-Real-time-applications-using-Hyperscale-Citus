@@ -8,7 +8,7 @@ Let's create the tables for http requests, per-minute aggregates and a table tha
 
 <kbd>![](images/1query.png)</kbd>
 
-2.In the **New Quer** copy and paste the following to create the tables.
+2.In the **New Query** copy and paste the following to create the tables.
 
 ```
 -- this is run on the coordinator
