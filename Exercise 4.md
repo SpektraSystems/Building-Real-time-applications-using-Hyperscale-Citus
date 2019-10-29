@@ -52,7 +52,7 @@ Select Count(*) from http_request;
 
 <kbd>![](images/query3countcheck1.png)</kbd>
 
-4.We will run this query to count web requests per minute along with a few statistics. For this open **New Query**, then paste the following to see average response time for sites.
+4.We will run this query to count web requests per minute along with a few statistics. But now we are querying the rollup table instead of raw table.For this open **New Query**, then paste the following to see average response time for sites.
 
 ```
 SELECT
