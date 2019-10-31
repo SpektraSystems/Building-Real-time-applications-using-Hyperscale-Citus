@@ -74,7 +74,7 @@ A hyperscale (citus) deployment stores table rows on different nodes based on th
 
 > **Note**: You can replace the query with a new one instead of opening a new query everytime for all other subsequent steps.
 
-6.Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. 
+6.Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. As an alternative, you may also choose to replace the query in existing query window and run from there.
 
 ```
 SELECT create_distributed_table('http_request', 'site_id'); 
