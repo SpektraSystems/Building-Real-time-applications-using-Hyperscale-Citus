@@ -56,21 +56,23 @@ CHECK (minute = date_trunc('minute', minute))
 );
 ```
 
+3.Then click on **Run** to execute the query.
+
 <kbd>![](images/queryrun1.png)</kbd>
 
-3.Once query completes execution, you should see **Commands completed successfully** under **Messages** tab. 
+4.Once query completes execution, you should see **Commands completed successfully** under **Messages** tab. 
 
 <kbd>![](images/querymsg1.png)</kbd>
 
-4.Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
+5.Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
 
 <kbd>![](images/query1table.png)</kbd>
 
 ### Shard tables across nodes
 
-A hyperscale deployment stores table rows on different nodes based on the value of a user-designated column. This "distribution column" marks how data is sharded across nodes. Let's set the distribution column to be site_id, the shard key.
+A hyperscale (citus) deployment stores table rows on different nodes based on the value of a user-designated column. This "distribution column" marks how data is sharded across nodes. Let's set the distribution column to be site_id, the shard key.
 
-5.Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. 
+6.Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. 
 
 ```
 SELECT create_distributed_table('http_request', 'site_id'); 
@@ -85,4 +87,4 @@ Notice that both tables are sharded on site_id. Hence there’s a 1-to-1 corresp
 
 <kbd>![](images/colocation.png)
 
-6.Click **Next** on the bottom right of this page.
+7.Click **Next** on the bottom right of this page.
