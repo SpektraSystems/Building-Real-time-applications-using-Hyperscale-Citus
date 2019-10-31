@@ -10,54 +10,54 @@ In this exercise, you will connect to your PostgreSQL database cluster in Power 
 
 2.Now click on **Sign in** button in the top right corner of PowerBI. Provide your **Username** as shown below:
 
-![](images/powerbi10.png)
+ ![](images/powerbi10.png)
 
 Then enter **Password** to successfully sign in.
 
-![](images/powerbi8.png)
+ ![](images/powerbi8.png)
 
 3.Select **Get Data** under **View**, then click on **More**.
 
-![](images/getdata.png)
+ ![](images/getdata.png)
 
 4.A **Get Data** block will appear. Select **Database** > **PostgreSQL database** and then **Connect**.
 
-![](images/getdata1.png)
+ ![](images/getdata1.png)
 
-5.Now connect to you database by providing your **Server name** and **Database name**. For **Data Connectivity Mode** select **Direct query**. Then select **Ok**.
+5.Now connect to the database by providing your **Server name** and **Database name** (copy both from environment details tab). For **Data Connectivity Mode** select **Direct query**. Then select **Ok**.
 
-![](images/getdata2.png)
+ ![](images/getdata2.png)
 
 6.Now in the **Navigator** select **public.http_request_1min** table given under the server and select **Load**.
 
-![](images/getdata3.png)
+ ![](images/getdata3.png)
 
-7.Then in the right of PowerBI, under **Fields** you can review the table you selected in the previous step.
+7.Then in the right hand in PowerBI, review the table you selected in the previous step under **Fields**.
 
-![](images/getdata4.png)
+ ![](images/getdata4.png)
 
 8.Now select **Clustered Coloumn Chart** as shown below. Then drag **site_id** under **Axis**.
 
-![](images/graph1.png)
+ ![](images/graph1.png)
 
 9.Now drag **error_count**, **request_count** and **success_count** under **Value** as shown below:
 
-![](images/graph2.png)
+ ![](images/graph2.png)
 
 10.Now add filter by dragging **ingest_time** under **Filters on this page**.
 
-![](images/graph3.png)
+ ![](images/graph3.png)
 
 11.It will look like as shown below. Then select **Filter Type** as **Basic Filtering** from the dropdown.
 
-![](images/graph4.png)
+ ![](images/graph4.png)
 
 12.Now select a randome ingest time as shown below.
 
-![](images/graph5.png)
+ ![](images/graph5.png)
 
 13.The final graph will look similar to the one shown below.
 
-![](images/graph6.png)
+ ![](images/graph6.png)
 
 14.**PLACE HOLDER**
