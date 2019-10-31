@@ -1,6 +1,4 @@
-## **Dashboarding on Hyperscale (Citus) using Power BI**
-
-### Conclusion
+## **Conclusion**
 
 In this tutorial, you used **Hyperscale (Citus)** on **Azure Database for PostgreSQL** and learned how to perform the following:
 
