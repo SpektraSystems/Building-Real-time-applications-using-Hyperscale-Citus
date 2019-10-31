@@ -112,6 +112,8 @@ Hyperscale (Citus) already comes with TopN installed, which means that there are
  
 1.Open a **New Query** and paste the following to add a new JSONB column top_urls_1000 to our rollup table. This stores the top 1000 urls for the minute and the site_id in the rollup table. You will get a message that **Commands completed successfully**.
 
+> **NOTE:** PostgreSQL and Hyperscale (Citus) supports the jsonb data type to store unstructured json data. Postgres also provides rich indexing capabilities on the jsonb data type for fast search through the json object.
+
 ```
 ALTER TABLE http_request_1min ADD COLUMN top_urls_1000 JSONB;
 ```
