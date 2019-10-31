@@ -8,7 +8,13 @@ In this exercise, you will connect to your PostgreSQL database cluster in Power 
 
 1.Open **PowerBI** given in left side on the desktop.
 
-2.Now click on **Sign in** button in the top right corner of PowerBI. Provide your Azure credentials i.e. **Username** and **Password** to successfully sign in.
+2.Now click on **Sign in** button in the top right corner of PowerBI. Provide your **Username** as shown below:
+
+![](images/powerbi10.png)
+
+Then enter **Password** to successfully sign in.
+
+![](images/powerbi8.png)
 
 3.Select **Get Data** under **View**, then click on **More**.
 
