@@ -72,9 +72,7 @@ SELECT rollup_http_request();
 
 <kbd>![](images/query8rollup1.png)</kbd>
 
-4.Dashboard queries are a little more complicated, you have to read out the distinct number of IP addresses by calling the hll_cardinality function.
-
-5.For this open a **New Query** and paste the following to create a report using the hll_cardinality function 
+4.The dashboard queries now calculate the distinct number of IP addresses by calling the hll_cardinality function. For this open a **New Query** and paste the following to create a report.
 
 ```
 SELECT site_id, ingest_time as minute, request_count, success_count, 
@@ -89,7 +87,7 @@ WHERE ingest_time > date_trunc('minute', now()) - interval '5 minutes' LIMIT 15;
 HLLs aren’t just faster, they let you do things you couldn’t previously. Say we did our rollups, but instead of using HLLs we saved the exact unique counts. This works fine, but you can’t answer queries such as “how many distinct sessions were there during this one-week period in the past we’ve thrown away the raw data for?”.
 With HLLs, this is easy. You can compute distinct IP counts over a time period with the following query
  
-6.Open a **New Query** and paste the following to compute distinct IP counts over time.
+5.Open a **New Query** and paste the following to compute distinct IP counts over time.
 
 ```
 SELECT hll_cardinality(hll_union_agg(distinct_ip_addresses))::bigint
