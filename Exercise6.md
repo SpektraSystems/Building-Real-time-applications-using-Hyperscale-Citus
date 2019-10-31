@@ -62,7 +62,7 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/lab6.png)</kbd>
 
-he rollup query now computes **hll_add_agg(hll_hash_text(ip_address))** which populates the hll object with the distinct ip addresses. To handle late incoming data, there is also hll_union which appends the newly created hll object to the already existing hll object.
+The rollup query now computes **hll_add_agg(hll_hash_text(ip_address))** which populates the hll object with the distinct ip addresses. To handle late incoming data, there is also hll_union which appends the newly created hll object to the already existing hll object.
 
 3.Then open a **New Query** and paste the following to execute the updated function.
 
