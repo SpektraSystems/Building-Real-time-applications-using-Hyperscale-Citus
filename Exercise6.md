@@ -4,7 +4,8 @@ A common question in HTTP operational analytics deals with approximate distinct 
 
 A datatype called hyperloglog, or HLL, can answer the query approximately; it takes a surprisingly small amount of space to tell you approximately how many unique elements are in a set. Its accuracy can be adjusted. Without HLLs this query involves shipping lists of IP addresses from the workers to the coordinator for it to deduplicate. By using HLLs you can greatly improve query speed.
 
-For non-Hyperscale (Citus) installs you much first you must install the HLL extension and enable it. You would run the Psql command CREATE EXTENSION hll; on all nodes in this case. This is not necessary on Azure as Hyperscale (Citus) already comes with HLL installed, along with other useful Extensions.
+Hyperscale (Citus) already comes with HLL installed, along with other useful Extensions, which means that there are no manual steps to install/enable the HLL extension. Now we’re ready to track IP addresses in our rollup with HLL. First add a column to the rollup table.
+
 Now we’re ready to track IP addresses in our rollup with HLL. First add a column to the rollup table.
 
 ### Task 1: Track IP addresses in Rollup
@@ -61,6 +62,8 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/lab6.png)</kbd>
 
+The **INSERT INTO** statement now has **distinct_ip_addresses** and the **SELECT** now has **hll_add_agg(hll_hash_text(ip_address))** AS **distinct_ip_addresses** added into the **rollup_http_request** function. **hll_add_agg** populates the hll object with the distinct ip addresses. To handle the late data usecase, there is also **hll_union** operation that appends the newly created hll object to the already existing hll object.
+
 3.Then open a **New Query** and paste the following to execute the updated function.
 
 ```
@@ -105,7 +108,7 @@ To solve the above problem you have the topN extension. TopN is an open source P
 
 The TopN extension becomes useful when you want to materialize top values, incrementally update these top values, and/or merge top values from different time intervals. you can think of TopN as hll’s cousin.
 
-For **Non-Hyperscale (Citus)**  first you must install the TopN extension and enable it. You would run the Psql command **CREATE EXTENSION topn**; on all nodes in this case. This is not necessary on Azure as Hyperscale (Citus) already comes with TopN installed, along with other useful Extensions.
+Hyperscale (Citus) already comes with TopN installed, which means that there are no manual steps to install/enable the TopN extension. Now we’re ready to track IP addresses in our rollup with TopN. First add a column to the rollup table.
  
 1.Open a **New Query** and paste the following to add a new JSONB column top_urls_1000 to our rollup table. This stores the top 1000 urls for the minute and the site_id in the rollup table. You will get a message that **Commands completed successfully**.
 
@@ -158,7 +161,7 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/query9rollup.png)</kbd>
 
-The **INSERT INTO** statement now has **distinct_ip_addresses** and the **SELECT** now has **hll_add_agg(hll_hash_text(ip_address))** AS **distinct_ip_addresses** added into the rollup_http_request function. **hll_add_agg** populate the hll object with the distinct ip addresses.
+The **INSERT INTO** statement now has **top_urls_1000** and the **SELECT** now has **topn_add_agg(url::text)** AS **top_urls_1000** added into the **rollup_http_request** function. **topn_add_agg** adds top 1000 urls to the **top_urls_1000** jsonb column. To handle the late data usecase, there is also topn_union operation that appends the newly created topn/jsonb object to the already existing topn/jsonb object.
 
 3.Open **New Query**, then copy and paste the following to execute the updated function.
 
@@ -168,7 +171,8 @@ SELECT rollup_http_request();
 
 <kbd>![](images/5lab6.png)</kbd>
 
-4.Dashboard query to get the top urls per minute over the last 5 minutes. If you observe we query the top_urls_1000 column using the topn() function to get only the top most url per minute. 
+4.Now run Dashboard query to get the top urls per minute over the last 5 minutes. Open **New Query** and paste the following.
+If you observe we query the top_urls_1000 column using the topn() function to get only the top most url per minute. 
 
 ```
 SELECT site_id, ingest_time as minute, request_count, success_count,
