@@ -60,7 +60,7 @@ Then enter **Password** to successfully sign in.
 
  ![](images/graph6.png)
 
-14.**PLACE HOLDER**
+You can explore more on the PowerBI Dashboard to visualize the data. As a refrence, we've another PowerBI dashboard draft file saved on desktop which includes pre-built PowerBi dashboard for the same data. Let's take a look at that:
 
 15.Now Open file **Real-Time-Data-Analytics-Draft** given on the VM desktop. You will get a security popup, select **Ok** there.
 
@@ -68,7 +68,7 @@ Then enter **Password** to successfully sign in.
 
 16.Then input the following credentials for database connection:
 
-* **server (host)name:** srvxxxxx.postgres.database.azure.com (copy your server name from **Environment details** tab)
+* **server (host)name:** srvxxxxx.postgres.database.azure.com 
 * **username:** citus
 * **password:** test123!
 
@@ -92,4 +92,6 @@ Then enter **Password** to successfully sign in.
 
 ![](images/powerbi9.png)
 
-20.Click **Next** on the bottom right of this page.
+20.You can explore the dasboard and report configuraton here. 
+
+21.Click **Next** on the bottom right of this page.
