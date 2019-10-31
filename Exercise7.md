@@ -22,7 +22,7 @@ In this exercise, you will connect to your PostgreSQL database cluster in Power 
 
 ![](images/getdata2.png)
 
-6.Now in the **Naigator** select **public.http_request_1min** table given under the server and select **Load**.
+6.Now in the **Navigator** select **public.http_request_1min** table given under the server and select **Load**.
 
 ![](images/getdata3.png)
 
@@ -54,3 +54,4 @@ In this exercise, you will connect to your PostgreSQL database cluster in Power 
 
 ![](images/graph6.png)
 
+14 **PLACE HOLDER**
