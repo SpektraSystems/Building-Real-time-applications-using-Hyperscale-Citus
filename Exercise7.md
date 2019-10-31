@@ -6,44 +6,51 @@ In real-time analytics workloads, you can use Power BI to query both rollup tabl
  
 In this exercise, you will connect to your PostgreSQL database cluster in Power BI Desktop and view/create advanced visualizations:
 
-1.Open file **Real-Time-Data-Analytics-Draft** given on the VM desktop. You will get a security popup, select **Ok** there.
+1.Open **PowerBI** given in left side on the desktop.
 
-![](images/powerbi.png)
+2.Now click on **Sign in** button in the top right corner of PowerBI. Provide your Azure credentials i.e. **Username** and **Password** to successfully sign in.
 
-2.Then input the following credentials for database connection:
+3.Select **Get Data** under **View**, then click on **More**.
 
-* **server (host)name:** srvxxxxx.postgres.database.azure.com (copy your server name from **Environment details** tab)
-* **username:** citus
-* **password:** test123!
+![](images/getdata.png)
 
-Then select **Connect**.
+4.A **Get Data** block will appear. Select **Database** > **PostgreSQL database** and then **Connect**.
 
-![](images/powerbi2.png)
+![](images/getdata1.png)
 
-3.Now select **Ok** for **Welcome to ArcGIS Maps for PowerBI** popup. Also, select **Got it** for the popup- **Introducing the new filter pane**.
+5.Now connect to you database by providing your **Server name** and **Database name**. For **Data Connectivity Mode** select **Direct query**. Then select **Ok**.
 
-![](images/powerbi3.png)
+![](images/getdata2.png)
 
-4.You will see a **sign in** box. Select Sign in option given at bottom.
+6.Now in the **Naigator** select **public.http_request_1min** table given under the server and select **Load**.
 
-![](images/powerbi6.png)
+![](images/getdata3.png)
 
-5.Then in sign in box select **Need a PowerBI account?Try for free.**. This will open PowerBI sign in page in your browser.
+7.Then in the right of PowerBI, under **Fields** you can review the table you selected in the previous step.
 
-![](images/powerbi7.png)
+![](images/getdata4.png)
 
-6.Use your credentials which you have to copy from the **Environment detials** tab. Copy username and password and paste for signing in. You will get a popup saying **Stay signed in**, click **Yes** for this.
+8.Now select **Clustered Coloumn Chart** as shown below. Then drag **site_id** under **Axis**.
 
-7.Now select **Start** by agreeing to Microsoft terms and conditions. You can skip optional steps after signing in, such as you will get a message over your screen to **Invite more people**. You can simply skip this step. 
+![](images/graph1.png)
 
-8.You will be now directed to **Microsoft Office Home**. Select **PowerBI** there, you will see that you are successfully signed in.
+9.Now drag **error_count**, **request_count** and **success_count** under **Value** as shown below:
 
-9.Now navigate back to the PowerBI file and enter your username in the sign in block there.
+![](images/graph2.png)
 
-![](images/powerbi10.png)
+10.Now add filter by dragging **ingest_time** under **Filters on this page**.
 
-10.This will direct you to the PowerBI Report.
+![](images/graph3.png)
 
-![](images/powerbi9.png)
+11.It will look like as shown below. Then select **Filter Type** as **Basic Filtering** from the dropdown.
 
-11.Click **Next** on the bottom right of this page.
+![](images/graph4.png)
+
+12.Now select a randome ingest time as shown below.
+
+![](images/graph5.png)
+
+13.The final graph will look similar to the one shown below.
+
+![](images/graph6.png)
+
