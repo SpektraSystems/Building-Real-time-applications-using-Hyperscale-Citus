@@ -161,8 +161,7 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/query9rollup.png)</kbd>
 
-The **INSERT INTO** statement now has **top_urls_1000** and the **SELECT** now has **topn_add_agg(url::text)** AS **top_urls_1000** added into the **rollup_http_request** function. **topn_add_agg** adds top 1000 urls to the **top_urls_1000** jsonb column. To handle the late data usecase, there is also topn_union operation that appends the newly created topn/jsonb object to the already existing topn/jsonb object.
-
+The rollup query now computes **topn_add_agg(url::text)** which adds top 1000 urls to the **top_urls_1000** jsonb column. To handle the late data usecase, there is also topn_union which appends the newly created topn/jsonb object to the already existing topn/jsonb object.
 3.Open **New Query**, then copy and paste the following to execute the updated function.
 
 ```
