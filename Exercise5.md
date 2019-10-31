@@ -62,7 +62,7 @@ SELECT rollup_http_request();
 
 > Note: The above function should be called every minute. You could do this by using a PostgreSQL extension called pg_cron which allows you to schedule recurring queries directly from the database. 
 
-3.Here the above rollup function can be called once every minute by the below command. Replace the above command with the following:
+3.Here the above rollup function can be called once every minute by the below command. Open **New Query** paste the following and run.
 
 ```
 SELECT cron.schedule('* * * * *','SELECT rollup_http_request();'); 
@@ -70,7 +70,7 @@ SELECT cron.schedule('* * * * *','SELECT rollup_http_request();');
 
 <kbd>![](images/schedule.png)</kbd>
 
-4.Open a **New Query** and paste the following to run the query on the 1 minute aggregated table.
+4.We will run a query to count web requests per minute. But now we are querying the rollup table instead of raw table. For this open **New Query**, then paste the following to see average response time for sites.
 
 ```
 SELECT site_id, ingest_time as minute, request_count,
@@ -81,16 +81,6 @@ LIMIT 15;
 ```
 
 <kbd>![](images/lab5.png)</kbd>
-
-5.Open a **New Query** and paste the following. We will run this query to count web requests per minute.
-
-```
-SELECT site_id, ingest_time as minute, request_count,
-    success_count, error_count, sum_response_time_msec/request_count as average_response_time_msec
-FROM http_request_1min
-WHERE ingest_time > date_trunc('minute', now()) - '5 minutes'::interval
-LIMIT 15;
-```
 
 ### Expiring Old Data
 
