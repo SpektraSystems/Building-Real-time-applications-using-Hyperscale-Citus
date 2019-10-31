@@ -60,7 +60,7 @@ Then enter **Password** to successfully sign in.
 
  ![](images/graph6.png)
 
-You can explore more on the PowerBI Dashboard to visualize the data. As a refrence, we've another PowerBI dashboard draft file saved on desktop which includes pre-built PowerBi dashboard for the same data. Let's take a look at that:
+You can explore more on the PowerBI Dashboard to visualize the data. As a reference, we've another PowerBI dashboard draft file saved on desktop which includes a more comprehensive pre-built PowerBi dashboard for the same data. Let's take a look at that:
 
 15.Now Open file **Real-Time-Data-Analytics-Draft** given on the VM desktop. You will get a security popup, select **Ok** there.
 
