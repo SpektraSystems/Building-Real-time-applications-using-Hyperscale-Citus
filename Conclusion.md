@@ -7,11 +7,12 @@ In this tutorial, you used **Hyperscale (Citus)** on **Azure Database for Postgr
 * Roll up data so your application will scale
 * Expire old data
 * Report on distinct counts
-* Update models to use unstructured data (JSONB)
+* Report top records using topn extension
+* Visualize data using Power BI
 
 ### Next Steps:
 
-* Contact us if you want to test a real production workload with Hyperscale (Citus): https://www.citusdata.com/about/contact_us
+* Contact us if you want to deploy a production workload with Hyperscale (Citus) at AskAzureDBforPostgreSQL@service.microsoft.com
 * To deploy Hyperscale Citus cluster in your own subscription to test a real workload: https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-hyperscale-portal
 
 ### Additional references
