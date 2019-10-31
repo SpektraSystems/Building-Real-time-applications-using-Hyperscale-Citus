@@ -60,9 +60,8 @@ SELECT rollup_http_request();
 
 <kbd>![](images/query5rollup1.png)</kbd>
 
-> Note: The above function should be called every minute. You could do this by using a PostgreSQL extension called pg_cron which allows you to schedule recurring queries directly from the database. 
 
-3.Here the above rollup function can be called once every minute by the below command. Open **New Query** paste the following and run.
+3.The above function should be called every minute. You could do this by using a PostgreSQL extension called pg_cron which allows you to schedule recurring queries directly from the database. Open **New Query** and paste the following and run.
 
 ```
 SELECT cron.schedule('* * * * *','SELECT rollup_http_request();'); 
