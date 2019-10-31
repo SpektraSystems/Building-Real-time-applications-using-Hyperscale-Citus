@@ -61,3 +61,35 @@ Then enter **Password** to successfully sign in.
  ![](images/graph6.png)
 
 14.**PLACE HOLDER**
+
+15.Now Open file **Real-Time-Data-Analytics-Draft** given on the VM desktop. You will get a security popup, select **Ok** there.
+
+![](images/powerbi.png)
+
+16.Then input the following credentials for database connection:
+
+* **server (host)name:** srvxxxxx.postgres.database.azure.com (copy your server name from **Environment details** tab)
+* **username:** citus
+* **password:** test123!
+
+Then select **Connect**.
+
+![](images/powerbi2.png)
+
+17.Now select **Ok** for **Welcome to ArcGIS Maps for PowerBI** popup. Also, select **Got it** for the popup- **Introducing the new filter pane**.
+
+![](images/powerbi3.png)
+
+18.Now click on **Sign in** button in the top right corner of PowerBI. Provide your **Username** as shown below:
+
+ ![](images/powerbi10.png)
+
+Then enter **Password** to successfully sign in.
+
+ ![](images/powerbi8.png)
+
+19.This will direct you to the PowerBI Report.
+
+![](images/powerbi9.png)
+
+20.Click **Next** on the bottom right of this page.
