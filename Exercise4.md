@@ -48,7 +48,7 @@ Select Count(*) from http_request;
 
 <kbd>![](images/query3countcheck1.png)</kbd>
 
-4.We will run this query to count web requests per minute along with a few statistics.
+4.Open **New Query** and paste the following query. We will run this query to count web requests per minute along with a few statistics.
 
 ```
 SELECT
