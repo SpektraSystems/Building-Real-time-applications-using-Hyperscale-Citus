@@ -72,6 +72,8 @@ CHECK (minute = date_trunc('minute', minute))
 
 A hyperscale (citus) deployment stores table rows on different nodes based on the value of a user-designated column. This "distribution column" marks how data is sharded across nodes. Let's set the distribution column to be site_id, the shard key.
 
+> **Note**: You can replace the query with a new one instead of opening a new query everytime for all other subsequent steps.
+
 6.Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. 
 
 ```
