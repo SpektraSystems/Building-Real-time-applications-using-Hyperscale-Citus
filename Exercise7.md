@@ -54,4 +54,4 @@ In this exercise, you will connect to your PostgreSQL database cluster in Power 
 
 ![](images/graph6.png)
 
-14 **PLACE HOLDER**
+14.**PLACE HOLDER**
