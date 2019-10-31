@@ -2,7 +2,7 @@
 
 ## **Lab 0: Sign in to the Azure portal**
 
-1. Launch **Microsoft Edge**, then sign in to the **Azure Portal** by navigating to https://portal.azure.com/ in your browser.
+1. Launch **Azure Portal** (https://portal.azure.com) in the desktop on left side. You can use the shortcut on the desktop. You'd be asked to choose default browser configurations, You can skip those for now by clicking cancel.
 
 2. Use the azure credentials provided in the **Environment Details** tab to log in to the portal.
 
