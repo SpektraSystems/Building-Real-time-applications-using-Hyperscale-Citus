@@ -44,11 +44,7 @@ Select Count(*) from http_request;
 
 <kbd>![](images/query3countcheck.png)</kbd>
 
-3.Again open **New Query** and enter the select command once more to see that the count is increasing. You will observe an increase in the count.
-
-```
-Select Count(*) from http_request; 
-```
+3.Run the same command once more to see that the count is increasing. You will observe an increase in the count.
 
 <kbd>![](images/query3countcheck1.png)</kbd>
 
@@ -72,7 +68,7 @@ LIMIT 15;
 <kbd>![](images/dashboard1.png)</kbd>
 
 5.The setup described above works but has drawbacks.
-- Your HTTP operational analytics dashboard must go over each row every time it needs to generate a graph. For example, if your clients are interested in trends over the past year, your queries will aggregate every row for the past year from scratch.
-- Your storage costs will grow proportionally with the ingest rate and the length of the queryable history. In practice, you may want to keep raw events for a shorter period of time (one month) and look at historical graphs over a longer time period (years).
+* Your HTTP operational analytics dashboard must go over each row every time it needs to generate a graph. For example, if your clients are interested in trends over the past year, your queries will aggregate every row for the past year from scratch.
+* Your storage costs will grow proportionally with the ingest rate and the length of the queryable history. In practice, you may want to keep raw events for a shorter period of time (one month) and look at historical graphs over a longer time period (years).
 
-5.Click **Next** on the bottom right of this page.
+6.Click **Next** on the bottom right of this page.
