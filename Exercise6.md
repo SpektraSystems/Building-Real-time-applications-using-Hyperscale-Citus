@@ -4,7 +4,7 @@ A common question in HTTP operational analytics deals with approximate distinct 
 
 A datatype called hyperloglog, or HLL, can answer the query approximately; it takes a surprisingly small amount of space to tell you approximately how many unique elements are in a set. Its accuracy can be adjusted. Without HLLs this query involves shipping lists of IP addresses from the workers to the coordinator for it to deduplicate. By using HLLs you can greatly improve query speed.
 
-Hyperscale (Citus) already comes with HLL installed, along with other useful Extensions, which means that there are no manual steps to install/enable the HLL extension. Now we’re ready to track IP addresses in our rollup with HLL. First add a column to the rollup table.
+Hyperscale (Citus) already comes with HLL installed, along with other useful Extensions, which means that there are no manual steps to install/enable the HLL extension.
 
 Now we’re ready to track IP addresses in our rollup with HLL. First add a column to the rollup table.
 
