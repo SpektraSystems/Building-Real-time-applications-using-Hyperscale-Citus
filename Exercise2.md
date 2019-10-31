@@ -2,7 +2,7 @@
 
 Here we will start working with Azure Data Studio by connecting our database to it.
 
-### Task 1: Connect to the database using Psql in Azure Data Studio
+### Task 1: Connect to the database using Azure Data Studio
 
 Now we will connect to PostgreSQL Database through Azure Data Studio.
 
