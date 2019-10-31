@@ -8,7 +8,7 @@
 
 3. Refer the **Environment Details** tab for any other lab credentials/details.
 
-![](images/environmentdetails.png)
+   ![](images/environmentdetails.png)
 
 4. You may encounter a popup entitled **Welcome to Microsoft Azure** with buttons for **Start Tour** and **Maybe Later** - Choose **Maybe Later**.
 
