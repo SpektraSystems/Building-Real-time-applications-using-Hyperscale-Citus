@@ -39,10 +39,10 @@ WHERE date_trunc('minute', ingest_time) <@
 GROUP BY 1, 2,3
 ON CONFLICT (site_id,ingest_time,request_country)
 DO UPDATE
-SET request_count = http_request_1min.request_count + excluded.request_count,
-success_count = http_request_1min.success_count + excluded.success_count,
-error_count = http_request_1min.error_count + excluded.error_count,
-sum_response_time_msec = http_request_1min.sum_response_time_msec + excluded.sum_response_time_msec;
+    SET request_count = http_request_1min.request_count + excluded.request_count,
+    success_count = http_request_1min.success_count + excluded.success_count,
+    error_count = http_request_1min.error_count + excluded.error_count,
+    sum_response_time_msec = http_request_1min.sum_response_time_msec + excluded.sum_response_time_msec;
 
 -- update the value in latest_rollup so that next time we run the
 -- rollup it will operate on data newer than curr_rollup_time
