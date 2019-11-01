@@ -20,7 +20,7 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 ![](images/azpostgresqlclusterinfo.png)
 
 
-4.On the overview pane under **Security** click **Networking** and put **Allow Azure Service** to **YES**.
+4.On the overview blade under **Security** click **Networking** and put **Allow Azure Service** to **YES**.
 
 ![](images/2postgresqlfw.png)
 
