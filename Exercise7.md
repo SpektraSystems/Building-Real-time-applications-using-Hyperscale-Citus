@@ -6,9 +6,11 @@ In real-time analytics workloads, you can use Power BI to query both rollup tabl
  
 In this exercise, you will connect to your PostgreSQL database cluster in Power BI Desktop and view/create advanced visualizations:
 
-1.Open **PowerBI** given in left side on the desktop.
+1.Open **PowerBI** given in left side on the desktop. A welcome page will open where you have to select **Already have PowerBI account?Sign in**.
 
-2.Now click on **Sign in** button in the top right corner of PowerBI. Provide your **Username** as shown below:
+![](images/citus1.png)
+
+2.Now provide your **Username** as shown below:
 
  ![](images/powerbi10.png)
 
@@ -16,9 +18,9 @@ Then enter **Password** to successfully sign in.
 
  ![](images/powerbi8.png)
 
-3.Select **Get Data** under **View**, then click on **More**.
+3.Now select **Get Data** as shown below:
 
- ![](images/getdata.png)
+ ![](images/citus4.png)
 
 4.A **Get Data** block will appear. Select **Database** > **PostgreSQL database** and then **Connect**.
 
@@ -68,29 +70,21 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 16.Then input the following credentials for database connection:
 
-* **server (host)name:** srvxxxxx.postgres.database.azure.com 
+* **server (host)name:** select **ignite-2019-c.postgres.database.azure.com** from the dropdown
 * **username:** citus
-* **password:** test123!
+* **password:** demo123!
 
 Then select **Connect**.
 
-![](images/powerbi2.png)
+![](images/citus2.png)
 
 17.Now select **Ok** for **Welcome to ArcGIS Maps for PowerBI** popup. Also, select **Got it** for the popup- **Introducing the new filter pane**.
 
 ![](images/powerbi3.png)
 
-18.Now click on **Sign in** button in the top right corner of PowerBI. Provide your **Username** as shown below:
+18.This will direct you to the PowerBI Report.
 
- ![](images/powerbi10.png)
-
-Then enter **Password** to successfully sign in.
-
- ![](images/powerbi8.png)
-
-19.This will direct you to the PowerBI Report.
-
-![](images/powerbi9.png)
+![](images/citus3.png)
 
 20.You can explore the dasboard and report configuraton here. 
 
