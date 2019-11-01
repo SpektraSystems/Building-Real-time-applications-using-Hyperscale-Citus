@@ -38,7 +38,7 @@ Go to **Environment details** tab and copy following values from there:
 
 ![](images/newconnection1.png)
 
-7.After getting connected, you can find your **PostgreSQL Database** under **Servers** pane as shown below:
+7.After getting connected, you can find your **PostgreSQL Database** under **Servers** blade as shown below:
 
 ![](images/newconnection3.png)
 
