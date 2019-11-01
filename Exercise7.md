@@ -78,7 +78,7 @@ Then select **Connect**.
 
 ![](images/citus2.png)
 
-17.Now select **Ok** for **Welcome to ArcGIS Maps for PowerBI** popup. Also, select **Got it** for the popup- **Introducing the new filter pane**.
+17.Now select **Ok** for **Welcome to ArcGIS Maps for PowerBI** popup. Also, select **Got it** for the popup- **Introducing the new filter blade**.
 
 ![](images/powerbi3.png)
 
