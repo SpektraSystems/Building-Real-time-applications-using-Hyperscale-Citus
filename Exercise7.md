@@ -64,29 +64,29 @@ Then enter **Password** to successfully sign in.
 
 You can explore more on the PowerBI Dashboard to visualize the data. As a reference, we've another PowerBI dashboard draft file saved on desktop which includes a more comprehensive pre-built PowerBi dashboard for the same data. Let's take a look at that:
 
-15.Now Open file **Real-Time-Data-Analytics-Draft** given on the VM desktop. You will get a security popup, select **Ok** there.
+14.Now Open file **Real-Time-Data-Analytics-Draft** given on the VM desktop. You will get a security popup, select **Ok** there.
 
 ![](images/powerbi.png)
 
-16.This will give two pop-ups saying **Refresh** and **Cannot load model** - click on **Close** for both.
+15.This will give two pop-ups saying **Refresh** and **Cannot load model** - click on **Close** for both.
 
-17.Now go to **Edit Queries** and from the dropdown arrow select **Data Source Settings**.
+16.Now go to **Edit Queries** and from the dropdown arrow select **Data Source Settings**.
 
 ![](images/datasource.png)
 
-18.The **Data Source Settings** tab will open, select **Change Source**.
+17.The **Data Source Settings** tab will open, select **Change Source**.
 
 ![](images/changesource.png)
 
-19.Enter you server hostname and database name from the environment details tab. Then select **Ok**.
+18.Enter you server hostname and database name from the environment details tab. Then select **Ok**.
 
 ![](images/changesource1.png)
 
-20.You will get a warning saying **There are pending changes in your queries that haven't been applied.**, here select **Apply Changes**.
+19.You will get a warning saying **There are pending changes in your queries that haven't been applied.**, here select **Apply Changes**.
 
 ![](images/applychanges.png)
 
-21.Then input the following credentials for database connection:
+20.Then input the following credentials for database connection:
 
 * **username:** citus
 * **password:** Password.1!!
@@ -96,14 +96,14 @@ Then select **Connect**.
 
 ![](images/citus2.png)
 
-22.If **Welcome to ArcGIS Maps for PowerBI** popup comes up select **Ok** for it. Also, select **Got it** for the popup- **Introducing the new filter blade**.
+21.If **Welcome to ArcGIS Maps for PowerBI** popup comes up select **Ok** for it. Also, select **Got it** for the popup- **Introducing the new filter blade**.
 
 ![](images/powerbi3.png)
 
-23.This will direct you to the PowerBI Report.
+22.This will direct you to the PowerBI Report.
 
 ![](images/citus3.png)
 
-24.You can explore the dashboard and report configuraton here. 
+23.You can explore the dashboard and report configuraton here. 
 
-25.Click **Next** on the bottom right of this page.
+24.Click **Next** on the bottom right of this page.
