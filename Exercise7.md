@@ -70,23 +70,27 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 15.This will give two pop-ups saying **Refresh** and **Cannot load model** - click on **Close** for both.
 
-16.Now go to **Edit Queries** and from the dropdown arrow select **Data Source Settings**.
+16.If **Welcome to ArcGIS Maps for PowerBI** popup comes up select **Ok** for it. Also, select **Got it** for the popup- **Introducing the new filter blade**.
+
+![](images/powerbi3.png)
+
+17.Now go to **Edit Queries** and from the dropdown arrow select **Data Source Settings**.
 
 ![](images/datasource.png)
 
-17.The **Data Source Settings** tab will open, select **Change Source**.
+18.The **Data Source Settings** tab will open, select **Change Source**.
 
 ![](images/changesource.png)
 
-18.Enter you server hostname and database name from the environment details tab. Then select **Ok**.
+19.Enter you server hostname and database name from the environment details tab. Then select **Ok** and then **Close**.
 
 ![](images/changesource1.png)
 
-19.You will get a warning saying **There are pending changes in your queries that haven't been applied.**, here select **Apply Changes**.
+20.You will get a warning saying **There are pending changes in your queries that haven't been applied.**, here select **Apply Changes**.
 
 ![](images/applychanges.png)
 
-20.Then input the following credentials for database connection:
+21.Then input the following credentials for database connection:
 
 * **username:** citus
 * **password:** Password.1!!
@@ -95,10 +99,6 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 Then select **Connect**.
 
 ![](images/citus2.png)
-
-21.If **Welcome to ArcGIS Maps for PowerBI** popup comes up select **Ok** for it. Also, select **Got it** for the popup- **Introducing the new filter blade**.
-
-![](images/powerbi3.png)
 
 22.This will direct you to the PowerBI Report.
 
