@@ -90,20 +90,10 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 ![](images/applychanges.png)
 
-21.Then input the following credentials for database connection:
-
-* **username:** citus
-* **password:** Password.1!!
-* **server (host)name:** enter your server group hostname from environment details tab.
-
-Then select **Connect**.
-
-![](images/citus2.png)
-
-22.This will direct you to the PowerBI Report.
+21.This will direct you to the PowerBI Report.
 
 ![](images/citus3.png)
 
-23.You can explore the dashboard and report configuraton here. 
+22.You can explore the dashboard and report configuraton here. 
 
-24.Click **Next** on the bottom right of this page.
+23.Click **Next** on the bottom right of this page.
