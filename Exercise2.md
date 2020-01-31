@@ -6,7 +6,7 @@ Here we will start working with Hyperscale (Citus) database using Azure Data Stu
 
 Now we will connect to PostgreSQL Database through Azure Data Studio.
 
-1.Open **Azure Data Studio** provided on the dektop. Select **No/Cancel** on any popup's at startup.
+1.Open **Azure Data Studio** provided on the desktop. Select **No/Cancel** on any popup's at startup.
 
 2.Then on the left click on **Extension** icon, then in the search bar enter **PostgreSQL** and select **Install**. After sucessful installation close and re-open the Azure Data Studio.
 
