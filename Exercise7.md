@@ -92,7 +92,7 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 21.This will direct you to the PowerBI Report.
 
-![](images/citus3.png)
+![](images/citus0.png)
 
 22.You can explore the dashboard and report configuraton here. 
 
