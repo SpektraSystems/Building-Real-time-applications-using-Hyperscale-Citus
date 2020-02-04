@@ -80,7 +80,7 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 17.This will direct you to the PowerBI Report.
 
-![](images/citus0.png)
+![](images/pbixfile.png)
 
 18.You can explore the dashboard and report configuraton here. 
 
