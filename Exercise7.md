@@ -68,7 +68,9 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 ![](images/powerbi.png)
 
-15.Copy **PostgreSQL Database Hostname** and paste it under **server name**. Then copy **PostgreSQL Database Username** and paste it under **database name** .
+15.Enter the following configurations and select **OK**:
+- **Server Name** - postgremsready-c.postgres.database.azure.com
+- **Database Name** - citus
 
 ![](images/changesource1.png)
 
@@ -76,10 +78,10 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 ![](images/powerbi3.png)
 
-21.This will direct you to the PowerBI Report.
+17.This will direct you to the PowerBI Report.
 
 ![](images/citus0.png)
 
-22.You can explore the dashboard and report configuraton here. 
+18.You can explore the dashboard and report configuraton here. 
 
-23.Click **Next** on the bottom right of this page.
+19.Click **Next** on the bottom right of this page.
