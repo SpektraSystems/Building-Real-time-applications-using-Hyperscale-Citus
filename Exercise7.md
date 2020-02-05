@@ -78,9 +78,9 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 ![](images/datasource.png)
 
-18.The **Data Source Settings** tab will open, select **Change Source**.
+18.The **Data Source Settings** tab will open, select the given server hostname and then click on **Change Source**.
 
-![](images/changesource.png)
+![](images/sourcechange.png)
 
 19.Enter your **server hostname** and **database name** from the Environment Details tab. Then select **Ok** and then **Close**.
 
