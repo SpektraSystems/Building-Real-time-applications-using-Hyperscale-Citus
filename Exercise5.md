@@ -85,9 +85,10 @@ LIMIT 15;
 
 The rollups make queries faster, but we still need to expire old data to avoid unbounded storage costs. Simply decide how long you’d like to keep data for each granularity, and use standard queries to delete expired data. 
 
+> **Note**: **You don't need to run these commands right now as we don't have any old data to expire.**
+
 - In the following example, we decided to keep raw data for one day, and per-minute aggregations for one month.
 
-> **Note**: **You don't need to run these commands right now as we don't have any old data to expire.**
 ```
 DELETE FROM http_request WHERE ingest_time < now() - interval '1 day';
 DELETE FROM http_request_1min WHERE ingest_time < now() - interval '1 month';
