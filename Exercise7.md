@@ -68,20 +68,35 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 ![](images/powerbi.png)
 
-15.Enter the following configurations and select **OK**:
-- **Server Name** - postgremsready-c.postgres.database.azure.com
-- **Database Name** - citus
-
-![](images/changesource1.png)
+15.This will give two pop-ups saying **Refresh** and **Cannot load model** - click on **Close** for both.
 
 16.If **Welcome to ArcGIS Maps for PowerBI** popup comes up select **Ok** for it. Also, select **Got it** for the popup- **Introducing the new filter blade**.
 
 ![](images/powerbi3.png)
 
-17.This will direct you to the PowerBI Report.
+17.Now go to **Edit Queries** and from the dropdown arrow select **Data Source Settings**.
+
+![](images/datasource.png)
+
+18.The **Data Source Settings** tab will open, select **Change Source**.
+
+![](images/changesource.png)
+
+19.Enter you server hostname and database name from the environment details tab. Then select **Ok** and then **Close**.
+
+![](images/changesource1.png)
+
+20.You will get a warning saying **There are pending changes in your queries that haven't been applied.**, here select **Apply Changes**.
+
+![](images/applychanges.png)
+
+21.This will direct you to the PowerBI Report.
 
 ![](images/pbixfile.png)
 
-18.You can explore the dashboard and report configuraton here. 
+22.You can explore the dashboard and report configuration here. 
 
-19.Click **Next** on the bottom right of this page.
+23.Click **Next** on the bottom right of this page.
+
+
+
