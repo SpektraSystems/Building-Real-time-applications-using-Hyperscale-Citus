@@ -6,7 +6,7 @@ In real-time analytics workloads, you can use Power BI to query both rollup tabl
  
 In this exercise, you will connect to your PostgreSQL database cluster in Power BI Desktop and view/create advanced visualizations:
 
-1.Open **PowerBI** given in left side on the desktop. A welcome page will open where you have to select **Already have PowerBI account?Sign in**.
+1.Open **PowerBI** application by clicking on **PowerBI** icon on the left side on the desktop. A welcome page will open where you have to select **Already have PowerBI account?Sign in**.
 
 ![](images/citus1.png)
 
