@@ -64,7 +64,7 @@ CHECK (minute = date_trunc('minute', minute))
 
 <kbd>![](images/querymsg1.png)</kbd>
 
-5.Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
+5.Verify the tables created by going to the blade on the left of the Azure Data Studio window, and clicking the arrows to open **Databases** > **citus** > **Tables**. Under Tables, you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
 
 <kbd>![](images/query1table.png)</kbd>
 
@@ -74,7 +74,7 @@ A hyperscale (citus) deployment stores table rows on different nodes based on th
 
 > **Note**: You can replace the query with a new one instead of opening a new query everytime for all other subsequent steps.
 
-6.Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. As an alternative, you may also choose to replace the query in existing query window and run from there.
+6.Now, Right click on the database citus as done in step 1 and select New Query. Then copy and paste the following in the console to see what you just created. As an alternative, you may also choose to replace the query in existing query window and run from there.
 
 ```
 SELECT create_distributed_table('http_request', 'site_id'); 
