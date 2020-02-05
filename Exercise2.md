@@ -1,12 +1,12 @@
 ## **Lab 2: Connecting to Hyperscale (Citus) on Azure Database for PostgreSQL**
 
-Here we will start working with Hyperscale (Citus) database using Azure Data Studio. First, We'll need to add firewall rules in Azure to allow access to the Hyperscale (citus) database.
+Here we will start working with Hyperscale (Citus) database using Azure Data Studio.
 
 ### Task 1: Connect to the database using Azure Data Studio
 
 Now we will connect to PostgreSQL Database through Azure Data Studio.
 
-1.Open **Azure Data Studio** provided on the desktop. Select **No/Cancel** on any popup's at startup.
+1.Open **Azure Data Studio** provided on the desktop. Select **No** on any popup's at startup. Then click on the **Cancel** button on the bottom right to close the connections tab.
 
 2.Then on the left click on **Extension** icon, then in the search bar enter **PostgreSQL** and select **Install**. After successful installation close and re-open the Azure Data Studio.
 
