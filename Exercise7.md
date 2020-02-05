@@ -82,7 +82,7 @@ You can explore more on the PowerBI Dashboard to visualize the data. As a refere
 
 ![](images/changesource.png)
 
-19.Enter you server hostname and database name from the environment details tab. Then select **Ok** and then **Close**.
+19.Enter your **server hostname** and **database name** from the Environment Details tab. Then select **Ok** and then **Close**.
 
 ![](images/changesource1.png)
 
