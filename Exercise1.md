@@ -15,7 +15,7 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 
 ![](images/azpostgresql1.png)
 
-3.We pre-provisioned a basic production grade Hyperscale (Citus) cluster with 1 coordinator with 4 vCores and 16GB RAM and 2 workers with each 2 vCores and 16GB RAM for this lab. You can review the cluster details in Azure Portal. 
+3.We pre-provisioned a basic production grade Hyperscale (Citus) cluster with 1 coordinator with 4 vCores and 16GB RAM and 2 workers with each 4 vCores and 32GB RAM for this lab. You can review the cluster details in Azure Portal. 
 
 ![](images/azpostgresqlclusterinfo.png)
 
