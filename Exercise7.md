@@ -30,73 +30,79 @@ Then enter **Password** to successfully sign in.
 
  ![](images/getdata2.png)
 
-6.Now in the **Navigator** select **public.http_request_1min** table given under the server and select **Load**.
+6.Navigate to the **Environment Details** tab, copy and paste your **PostgreSQL Database Username** and **PostgreSQL Database Password** in their respective blocks as shown below:
+
+ ![](images/dbconnect.png)
+
+Then select **Connect**.
+
+7.Now in the **Navigator** select **public.http_request_1min** table given under the server and select **Load**.
 
  ![](images/getdata3.png)
 
-7.Then in the right hand side in PowerBI, review the table you selected in the previous step under **Fields**.
+8.Then in the right hand side in PowerBI, review the table you selected in the previous step under **Fields**.
 
  ![](images/getdata4.png)
 
-8.Now select **Clustered Column Chart** as shown below. Then drag **site_id** under **Axis**.
+9.Now select **Clustered Column Chart** as shown below. Then drag **site_id** under **Axis**.
 
  ![](images/graph1.png)
 
-9.Now drag **error_count**, **request_count** and **success_count** under **Value** as shown below:
+10.Now drag **error_count**, **request_count** and **success_count** under **Value** as shown below:
 
  ![](images/graph2.png)
 
-10.Now add filter by dragging **ingest_time** under **Filters on this page**.
+11.Now add filter by dragging **ingest_time** under **Filters on this page**.
 
  ![](images/graph3.png)
 
-11.It will look like as shown below. Then select **Filter Type** as **Basic Filtering** from the dropdown.
+12.It will look like as shown below. Then select **Filter Type** as **Basic Filtering** from the dropdown.
 
  ![](images/graph4.png)
 
-12.Now select a randome ingest time as shown below.
+13.Now select a randome ingest time as shown below.
 
  ![](images/graph5.png)
 
-13.The final graph will look similar to the one shown below.
+14.The final graph will look similar to the one shown below.
 
  ![](images/graph6.png)
 
 You can explore more on the PowerBI Dashboard to visualize the data. As a reference, we've another PowerBI dashboard draft file saved on desktop which includes a more comprehensive pre-built PowerBi dashboard for the same data. Let's take a look at that:
 
-14.Now Open file **Real-Time-Data-Analytics-Draft** given on the VM desktop. You will get a security popup, select **Ok** there.
+15.Now Open file **Real-Time-Data-Analytics-Draft** given on the VM desktop.
 
-![](images/powerbi.png)
+16.This will give a pop-up asking for the username and password, select **Cancel** for it and then **Close** the **Cannot load model** note.
 
-15.This will give two pop-ups saying **Refresh** and **Cannot load model** - click on **Close** for both.
+![](images/cancel.png)
 
-16.If **Welcome to ArcGIS Maps for PowerBI** popup comes up select **Ok** for it. Also, select **Got it** for the popup- **Introducing the new filter blade**.
+![](images/cancel1.png)
 
-![](images/powerbi3.png)
+17.Select **Got it** for the popup- **Introducing the new filter blade** and for **Welcome to ArcGIS Maps for PowerBI** select **Ok**. 
 
-17.Now go to **Edit Queries** and from the dropdown arrow select **Data Source Settings**.
+18.Now go to **Edit Queries** and from the dropdown arrow select **Data Source Settings**.
 
 ![](images/datasource.png)
 
-18.The **Data Source Settings** tab will open, select the given server hostname and then click on **Change Source**.
+19.The **Data Source Settings** tab will open, select the given server hostname and then click on **Change Source**.
 
 ![](images/sourcechange.png)
 
-19.Enter your **server hostname** and **database name** from the Environment Details tab. Then select **Ok** and then **Close**.
+20.Enter your **server hostname** and **database name** from the Environment Details tab. Then select **Ok** and then **Close**.
 
 ![](images/changesource1.png)
 
-20.You will get a warning saying **There are pending changes in your queries that haven't been applied.**, here select **Apply Changes**.
+21.You will get a warning saying **There are pending changes in your queries that haven't been applied.**, here select **Apply Changes**.
 
 ![](images/applychanges.png)
 
-21.This will direct you to the PowerBI Report.
+22.This will direct you to the PowerBI Report.
 
 ![](images/pbixfile.png)
 
-22.You can explore the dashboard and report configuration here. 
+23.You can explore the dashboard and report configuration here. 
 
-23.Click **Next** on the bottom right of this page.
+24.Click **Next** on the bottom right of this page.
 
 
 
