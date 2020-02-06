@@ -60,7 +60,7 @@ Then select **Connect**.
 
  ![](images/graph4.png)
 
-13.Now select a randome ingest time as shown below.
+13.Now select a random ingest time as shown below.
 
  ![](images/graph5.png)
 
