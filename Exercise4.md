@@ -2,7 +2,7 @@
 
 The system is ready to accept data and serve queries now! The next set of instructions will keep the following loop running in a Psql console in the background while you continue with the other commands in this article. It generates fake data every second or two.
  
-1.Open **New Query** and paste the following query to create the http_request load generator.
+1.Open **New Query** and paste the following query to create the http_request load generator. Then click on **Run** to execute the query.
 
 ```
 -- loop continuously writing records every 1/4 second
@@ -36,7 +36,7 @@ END $$;
 
 The Hyperscale (Citus) hosting option allows multiple nodes to process queries in parallel for speed. For instance, the database calculates aggregates like SUM and COUNT on worker nodes, and combines the results into a final answer.
 
-2.Open **New Query** and enter the following command to verify the real-time load is being generated from the previous step.
+2.Open **New Query**, enter the following command to verify the real-time load is being generated from the previous step and then click  **Run** button.
 
 ```
 Select Count(*) from http_request; 
@@ -48,7 +48,7 @@ Select Count(*) from http_request;
 
 <kbd>![](images/query3countcheck1.png)</kbd>
 
-4.Open **New Query** and paste the following query. We will run this query to count web requests per minute along with a few statistics.
+4.Open **New Query** and paste the following query then click on **Run** button. We will run this query to count web requests per minute along with a few statistics.
 
 ```
 SELECT
