@@ -36,7 +36,7 @@ END $$;
 
 The Hyperscale (Citus) hosting option allows multiple nodes to process queries in parallel for speed. For instance, the database calculates aggregates like SUM and COUNT on worker nodes, and combines the results into a final answer.
 
-2.Open **New Query**, enter the following command to verify the real-time load is being generated from the previous step and then click  **Run** button.
+2.Open **New Query**, enter the following command and then click  **Run** button. This is to verify the real-time load is being generated from the previous step.
 
 ```
 Select Count(*) from http_request; 
