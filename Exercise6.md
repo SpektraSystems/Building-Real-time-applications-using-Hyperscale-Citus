@@ -18,7 +18,7 @@ ALTER TABLE http_request_1min ADD COLUMN distinct_ip_addresses hll;
 
 <kbd>![](images/query7rollup.png)</kbd>
 
-2.Next we will use our custom aggregation to populate the column. Open a **New Query** and paste the following to add it to the query of our rollup function.
+2.Next we will update our rollup function to populate the new **distinct_ip_addressescolumn** (of type HLL.) Open a **New Query** and paste the following and then click **Run**.
 
 ```
 -- function to do the rollup
@@ -64,7 +64,7 @@ $$ LANGUAGE plpgsql;
 
 The rollup query now computes **hll_add_agg(hll_hash_text(ip_address))** which populates the hll object with the distinct ip addresses. To handle late incoming data, there is also hll_union which appends the newly created hll object to the already existing hll object.
 
-3.Then open a **New Query** and paste the following to execute the updated function.
+3.At this point, we've created the updated rollup function but we haven't executed it yet. So, now open a **New Query** to paste the following to execute the updated rollup function by clicking **Run**.
 
 ```
 SELECT rollup_http_request(); 
@@ -116,7 +116,7 @@ Hyperscale (Citus) already comes with TopN installed, which means that there are
 ALTER TABLE http_request_1min ADD COLUMN top_urls_1000 JSONB;
 ```
 
-2.Now open a **New Query** and paste the following to add it to the query of our rollup function.
+2.Now open a **New Query** and paste the following to add it the TopN computation to our rollup function. Then click **Run**.
 
 ```
 CREATE OR REPLACE FUNCTION rollup_http_request() RETURNS void AS $$
@@ -161,8 +161,9 @@ $$ LANGUAGE plpgsql;
 
 <kbd>![](images/query9rollup.png)</kbd>
 
-The rollup query now computes **topn_add_agg(url::text)** which adds top 1000 urls to the **top_urls_1000** jsonb column. To handle the late data usecase, there is also topn_union which appends the newly created topn/jsonb object to the already existing topn/jsonb object.
-3.Open **New Query**, then copy and paste the following to execute the updated function.
+3.The rollup query now computes **topn_add_agg(url::text)** which adds top 1000 urls to the **top_urls_1000** jsonb column. To handle the late data usecase, there is also topn_union which appends the newly created topn/jsonb object to the already existing topn/jsonb object.
+
+4.Open **New Query**, then copy and paste the following to execute the updated function.
 
 ```
 SELECT rollup_http_request(); 
@@ -170,7 +171,7 @@ SELECT rollup_http_request();
 
 <kbd>![](images/5lab6.png)</kbd>
 
-4.Now run Dashboard query to get the top urls per minute over the last 5 minutes. Open **New Query** and paste the following.
+5.Now run Dashboard query to get the top urls per minute over the last 5 minutes. Open **New Query** and paste the following.
 If you observe we query the top_urls_1000 column using the topn() function to get only the top most url per minute. 
 
 ```
@@ -188,7 +189,7 @@ You can scroll and check the whole table as shown below:
 
 <kbd>![](images/3lab6.png)</kbd>
 
-5.Open **New Query**, then copy and paste the following to create a report for the top 10 urls in the last 5 minutes. If you observe the query uses topn_union_agg to aggregate the minutely topn values over the last 5 minutes.
+6.Open **New Query**, then copy and paste the following to create a report for the top 10 urls in the last 5 minutes. If you observe the query uses topn_union_agg to aggregate the minutely topn values over the last 5 minutes.
 
 ```
 SELECT (topn(topn_agg,10)).item as top_urls from (
@@ -198,4 +199,4 @@ FROM http_request_1min WHERE ingest_time > date_trunc('minute', now()) - '5 minu
 
 <kbd>![](images/4lab6.png)</kbd>
 
-6.Click **Next** on the bottom right of this page.
+7.Click **Next** on the bottom right of this page.
