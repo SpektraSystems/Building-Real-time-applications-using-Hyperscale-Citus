@@ -64,7 +64,7 @@ CHECK (minute = date_trunc('minute', minute))
 
 <kbd>![](images/querymsg1.png)</kbd>
 
-5.Verify the tables created by going to **Databases** > **citus** > **Tables**, under **Tables** you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
+5.Verify the tables created by going to the blade on the left of the Azure Data Studio window, and clicking the arrows to open **Databases** > **citus** > **Tables**. Under Tables, you can review the tables. Along with tables you would also see daily partitions for the http_request table. We used pg_partman to create those partitions. pg_partman makes postgres native partitioning very simplified. We also scheduled a cron job to automatically create partitions on a daily basis.
 
 <kbd>![](images/query1table.png)</kbd>
 
@@ -74,7 +74,7 @@ A hyperscale (citus) deployment stores table rows on different nodes based on th
 
 > **Note**: You can replace the query with a new one instead of opening a new query everytime for all other subsequent steps.
 
-6.Now  select **New Query** as done before. Then copy and paste the following in the console to see what you just created. As an alternative, you may also choose to replace the query in existing query window and run from there.
+6.Now, Right click on the database citus as done in step 1 and select New Query. Then copy and paste the following in the console and then click on **Run** to execute the query to see what you just created. As an alternative, you may also choose to replace the query in existing query window and run from there.
 
 ```
 SELECT create_distributed_table('http_request', 'site_id'); 
@@ -83,7 +83,7 @@ SELECT create_distributed_table('http_request_1min', 'site_id');
 
 <kbd>![](images/query2.png)</kbd>
 
-The above commands create shards for both the tables across worker nodes. Shards are nothing but PostgreSQL tables that hold a set of sites. All the data for a particular site for a table will live in the same shard.
+The above commands create shards for both the tables across worker nodes. When you create_distributed_table, you take all the data that would have been in a big single table and you split it ('shard it') across multiple smaller tables, that in turn get distributed across the worker nodes.
 
 Notice that both tables are sharded on site_id. Hence there’s a 1-to-1 correspondence between http_request shards and http_request_1min shards i.e shards of both tables holding same set of sites are on same worker nodes. This is called colocation. Colocation makes queries, such as joins, faster and our rollups possible. In the following image you will see an example of colocation where for both tables site_id 1 and 3 are on worker 1 while site_id 2 and 4 are on Worker 2.
 
