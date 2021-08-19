@@ -23,6 +23,7 @@ Now we will connect to PostgreSQL Database through Azure Data Studio.
 Go to **Environment details** tab and copy following values from there:
 
 * Server Name: Copy the server name given under **PostgreSQL Database hostname** in **environment details** tab.
+* Authentication type: **Password**
 * Username: **citus**
 * Password: **Password.1!!**
 * Database Name: **citus**
@@ -36,7 +37,7 @@ Go to **Environment details** tab and copy following values from there:
 
 6.Now **Connection details** should look similar to the below, then select **Connect**:
 
-![](images/newconnection1.png)
+![](https://github.com/Shivashant25/Building-Real-time-applications-using-Hyperscale-Citus/blob/master/images/l2%20ss6.png?raw=true)
 
 7.After getting connected, you can find your **PostgreSQL Database** under **Servers** blade as shown below:
 
