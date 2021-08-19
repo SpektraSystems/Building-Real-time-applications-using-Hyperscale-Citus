@@ -19,13 +19,12 @@ Follow the instructions given below to allow yourself access to the Hyperscale (
 
 ![](images/azpostgresqlclusterinfo.png)
 
+4.On the overview blade under **Security** click **Networking** and **select** the **"Allow public access from Azure services and resources within Azure to this server group"**.
 
-4.On the overview blade under **Security** click **Networking** and put **Allow Azure Service** to **YES**.
-
-![](images/2postgresqlfw.png)
+![](https://github.com/Shivashant25/Building-Real-time-applications-using-Hyperscale-Citus/blob/master/images/l2%20s3.png?raw=true)
 
 5.Now add **Firewall Rule**. Select **Add current client IP address**, this will add the client IP by creating a new rule. Then **save** the changes.
 
-![](images/firewallip1.png)
+![](https://github.com/Shivashant25/Building-Real-time-applications-using-Hyperscale-Citus/blob/master/images/l2%20s4.png?raw=true)
 
 6.Click **Next** on the bottom right of this page.
